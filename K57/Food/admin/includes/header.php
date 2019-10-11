@@ -66,7 +66,7 @@
 				<a href="#"> <button class="btn btn_primary_button" type="button">Member</button></a>
 			</div>
 			<div class="col-md-1  col-sm-4 col-xs-4">
-				<a href="#"><button class="btn btn_primary_button" type="button">Invoice</button></a>
+				<a href="billlist.php"><button class="btn btn_primary_button" type="button">Invoice</button></a>
 			</div>
 
 		</div>

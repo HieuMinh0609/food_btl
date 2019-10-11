@@ -33,13 +33,23 @@ function createBill($conn, $title, $description) {
 
 function updateBill($conn, $id, $status) {
 	 
-	db_query($conn, "UPDATE `bill` SET `status`='$status'  WHERE idbill = $id");
+
+	 db_query($conn, "UPDATE `bill` SET `status`='$status'  WHERE idbill = $id");
+	 
+	
 }
 
-function deleteCat($conn, $id) {
-	return db_query($conn, "DELETE FROM cat WHERE id = $id");
+function deleteBill($conn, $id) { 
+	 	$result = mysqli_query($conn, "DELETE FROM bill WHERE idbill = $id");
+	 	return $result;
 }
 
+function db_query_bill($conn, $query) {
+	if(!$result) {
+		die("Error execute query: " . mysqli_error($conn));
+	}
+	return $result;
+}
 
 function getBill($conn, $id) {
 	return db_single($conn, "SELECT * FROM bill WHERE idbill = $id");

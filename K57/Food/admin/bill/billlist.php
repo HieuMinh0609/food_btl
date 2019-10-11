@@ -69,7 +69,7 @@
 		"status" => "Trạng Thái",
 		"mount" => "Tổng Tiền"
 	],
-		"billedit.php","idbill","billdelete.php","billedit_detail.php");
+		"billedit.php","idbill","billdelete.php");
 
 	db_close($conn);
 ?>

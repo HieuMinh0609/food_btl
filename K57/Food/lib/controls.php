@@ -1,21 +1,26 @@
 <?php 
-function printTable($data, $columns, $editLink = "",$id="", $deleteLink = "", $deleteCondition = null, $cssClass = "default")
+function printTable($data, $columns, $editLink = "",$id="", $deleteLink = "",$editdetailLink = "", $deleteCondition = null, $btn = "")
 {
 	
 	echo("<div class=\"container\">");
 	echo("<div class=\"row\">");
-	echo("<table class=\"table table_backcolor table-bordered\">");
+	echo("<table id=\"tableID\" class=\"table table_backcolor table-bordered\">");
 	echo("<tr>");
 	foreach ($columns as $column) {
 		echo ("<th scope=\"col\">$column</th>");
 	}
 	if($editLink != "") {
-		echo("<td></td>");
+		echo("<td ></td>");
+	}
+	if($btn != "") {
+		echo("<td ></td>");
 	}
 	if($deleteLink != "") {
 		echo("<td></td>");
 	}
-
+	if($editdetailLink != "") {
+		echo("<td></td>");
+	}
 	echo("</tr>");
 
 	while($row = mysqli_fetch_assoc($data)) {
@@ -37,10 +42,12 @@ function printTable($data, $columns, $editLink = "",$id="", $deleteLink = "", $d
 			}
 			
 		}
-		if($editLink != "") {
-				echo("<td><a class=\"btn btn-warning\" href=\"$editLink?id={$row["$id"]}\">Edit</a></td>");	
+		if($editdetailLink != "") {
+				echo("<td style=\" width: 30px;\" ><a  class=\"btn btn-primary\" href=\"$editdetailLink?id={$row["$id"]}\">Detail</a></td>");	
 		}
-
+		if($editLink != "") {
+				echo("<td style=\" width: 30px;\" ><a  class=\"btn btn-warning\" href=\"$editLink?id={$row["$id"]}\">Edit</a></td>");	
+		}
 		if($deleteLink != "") {
 				$result = 0;
 				if($deleteCondition)  {
@@ -48,13 +55,15 @@ function printTable($data, $columns, $editLink = "",$id="", $deleteLink = "", $d
 				}
 
 				if($result == 0) {
-					echo("<td><a href=\"$deleteLink?id={$row["$id"]}\" onclick=\"return confirm('Are you sure?')\">Delete</a></td>");	
+					echo("<td style=\" width: 30px;\"><a class=\"btn btn-danger\" href=\"$deleteLink?id={$row["$id"]}\" onclick=\"return confirm('Are you sure?')\">Delete</a></td>");	
 				}
 				else {
 					echo("<td>Cannot delete category contains news</td>");
 				}
 		}
-		
+		if($btn != "") {
+				echo("<td style=\" width: 30px;\" ><button  class=\"btn btn-primary\">Show</button></td>");	
+		}
 		echo ("</tr>");
 	}
 	

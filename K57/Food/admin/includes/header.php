@@ -7,6 +7,9 @@
 	 <link rel="stylesheet"  type="text/css" href="content/bootstrap-3.1.1-dist/css/bootstrap.min.css">
 	 <script type="text/javascript" src="content/bootstrap-3.1.1-dist/js/bootstrap.min.js"></script>
 	 <link rel="stylesheet" type="text/css" href="content/style.css">
+
+	  <link rel="stylesheet" type="text/css" href="content/file.css">
+	  <script  language="JavaScript"  type="text/javascript" src="content/file.js"></script>
 </head>
 <body>
 <div class="container-fluid">
@@ -44,7 +47,7 @@
 			</div>
 		</div>
 
-		<div class="card_hr row">
+		<div class="card_hr row" >
 			<hr>
 		</div>
 
@@ -71,6 +74,6 @@
 
 		</div>
 	</div>
-	<div class="card_hr row">
+	<div class="card_hr row" style="margin: 0">
 		<hr>
 	</div>

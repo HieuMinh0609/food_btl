@@ -14,9 +14,13 @@ function findProperty($conn,$mapArray,$offset="",$limit="") {
     	}
           
      } 
+
+     $sql .="Order by "." b.status desc";
  	if($offset!=="" ){
  		$sql .= " limit  " .$offset .",". $limit;
  	}
+
+
 
  	 
 	return db_query($conn,$sql);
@@ -27,8 +31,9 @@ function createBill($conn, $title, $description) {
 	db_query($conn, "INSERT INTO `bill`(`title`, `description`) VALUES ('$title', '$description')");
 }
 
-function updateCat($conn, $id, $title, $description) {
-	db_query($conn, "UPDATE `cat` SET `title`='$title',`description`='$description' WHERE id = $id");
+function updateBill($conn, $id, $status) {
+	 
+	db_query($conn, "UPDATE `bill` SET `status`='$status'  WHERE idbill = $id");
 }
 
 function deleteCat($conn, $id) {
@@ -36,8 +41,8 @@ function deleteCat($conn, $id) {
 }
 
 
-function getCat($conn, $id) {
-	return db_single($conn, "SELECT * FROM cat WHERE id = $id");
+function getBill($conn, $id) {
+	return db_single($conn, "SELECT * FROM bill WHERE idbill = $id");
 }
 
 function newsCountOfCat($conn, $id) {

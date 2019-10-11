@@ -24,10 +24,12 @@ function printTable($data, $columns, $editLink = "",$id="", $deleteLink = "", $d
 			if($field=="status"){
 
 				if($row[$field]==1){
-					echo ("<td><a title=\"unfinished\"  class=\" btn btn-warning\"></a> </td>");
+					echo ("<td><a title=\"unfinished\"  class=\"btn btn-danger glyphicon glyphicon-remove\"></a> </td>");
+					 
 				}
 				if($row[$field]==0){
-					echo ("<td><a title=\"finished\"  class=\" btn btn-success\"></a> </td>");
+					echo ("<td><a title=\"finished\"  class=\"btn btn-success glyphicon glyphicon-ok\"></a> </td>");
+
 				}
 				 
 			}else{

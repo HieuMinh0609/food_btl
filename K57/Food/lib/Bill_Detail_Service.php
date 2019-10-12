@@ -15,17 +15,17 @@ function createDetailBill($conn, $title, $description) {
 	db_query($conn, "INSERT INTO `bill`(`title`, `description`) VALUES ('$title', '$description')");
 }
 
-function updateDeatailBill($conn, $id, $status) {
+function updateDeatailBill($conn, $id, $count) {
 	 
 
-	 db_query($conn, "UPDATE `bill` SET `status`='$status'  WHERE idbill = $id");
+	 db_query($conn, "UPDATE `bill_detail` SET SoLuong=$count  WHERE idbill_detail = $id");
 	 
-	
+		 
 }
 
 function deleteBillDeail($conn, $id) { 
-	 	$result = mysqli_query($conn, "DELETE FROM bill WHERE idbill = $id");
-	 	return $result;
+	 	db_query($conn, "DELETE FROM `bill_detail` WHERE idbill_detail = $id");
+	 	 
 }
 
 function db_query_detailbill($conn, $query) {
@@ -36,7 +36,9 @@ function db_query_detailbill($conn, $query) {
 }
 
 function getDetailBill($conn, $id) {
-	return db_single($conn, "SELECT * FROM bill WHERE idbill = $id");
+	return db_single($conn, "Select  b.idbill_detail,b.idbill ,b.SoLuong,p.name,p.image from bill_detail  b   INNER JOIN product p  ON b.idproduct = p.idproduct  
+ INNER JOIN bill bi  ON b.idbill = bi.idbill  
+where b.idbill_detail ='".$id."'");
 }
 
  

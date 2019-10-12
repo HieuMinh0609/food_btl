@@ -6,7 +6,7 @@ function getAllCat($conn) {
 }
 
 function findProperty($conn,$mapArray,$offset="",$limit="") {
-    $sql = "Select  b.idbill,b.place , m.fullname as nameMember,b.createdate,b.status,b.mount from bill b".   "  INNER JOIN member m  ON b.idmember = m.idmember where 1=1 ";
+    $sql = "Select  b.idbill,b.place , m.fullname as nameMember,b.createdate,b.status from bill b".   "  INNER JOIN member m  ON b.idmember = m.idmember where 1=1 ";
     if(count($mapArray)>0){
     	foreach ($mapArray as $key => $value){
 

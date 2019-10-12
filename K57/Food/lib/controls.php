@@ -5,40 +5,42 @@ function printTable($data, $columns, $editLink = "",$id="", $deleteLink = "",$ed
 	echo("<div class=\"container\">");
 	echo("<div class=\"row\">");
 	echo("<table id=\"tableID\" class=\"table table_backcolor table-bordered\">");
+	echo("<thead>");
 	echo("<tr>");
 	foreach ($columns as $column) {
 		echo ("<th scope=\"col\">$column</th>");
 	}
 	if($editLink != "") {
-		echo("<td ></td>");
+		echo("<th ></th>");
 	}
 	if($btn != "") {
-		echo("<td ></td>");
+		echo("<th ></th>");
 	}
 	if($deleteLink != "") {
-		echo("<td></td>");
+		echo("<th></th>");
 	}
 	if($editdetailLink != "") {
-		echo("<td></td>");
+		echo("<th></th>");
 	}
 	echo("</tr>");
+	echo("</thead>");
 
 	while($row = mysqli_fetch_assoc($data)) {
-		echo("<tr>");
+		echo("<tr  class=\"table_show\">");
 		foreach ($columns as $field => $title) {
 			if($field=="status"){
 
 				if($row[$field]==1){
-					echo ("<td><a title=\"unfinished\"  class=\"btn btn-danger glyphicon glyphicon-remove\"></a> </td>");
+					echo ("<td class=\"table_show\"><a title=\"unfinished\"  class=\"btn btn-danger glyphicon glyphicon-remove\"></a> </td>");
 					 
 				}
 				if($row[$field]==0){
-					echo ("<td><a title=\"finished\"  class=\"btn btn-success glyphicon glyphicon-ok\"></a> </td>");
+					echo ("<td class=\"table_show\" ><a title=\"finished\"  class=\"btn btn-success glyphicon glyphicon-ok\"></a> </td>");
 
 				}
 				 
 			}else{
-				echo ("<td>$row[$field]</td>");
+				echo ("<td class=\"table_show\" >$row[$field]</td>");
 			}
 			
 		}
@@ -62,7 +64,7 @@ function printTable($data, $columns, $editLink = "",$id="", $deleteLink = "",$ed
 				}
 		}
 		if($btn != "") {
-				echo("<td style=\" width: 30px;\" ><button  class=\"btn btn-primary\">Show</button></td>");	
+				echo("<td style=\" width: 30px;\" ><button    id_urc=\"{$row["$id"]}\" class=\"btn btn-primary table_show\">Show</button></td>");	
 		}
 		echo ("</tr>");
 	}

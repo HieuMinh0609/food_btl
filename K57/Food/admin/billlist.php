@@ -66,8 +66,7 @@
 		"place" => "Địa Chỉ",
 		"nameMember" => "Tên Khách Hàng",
 		"createdate" => "Ngày Tháng",
-		"status" => "Trạng Thái",
-		"mount" => "Tổng Tiền"
+		"status" => "Trạng Thái"
 	],
 		"billedit.php","idbill","billdelete.php","billedit_detail.php");
 

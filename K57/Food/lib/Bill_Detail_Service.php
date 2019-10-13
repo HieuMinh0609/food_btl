@@ -11,6 +11,28 @@ where b.idbill ='".$id."'");
 	
 }
 
+function getTotalSellBill($conn,$id){
+	$result= db_query($conn, "Select sum((p.sell*b.SoLuong)) as 'total' from bill_detail  b   INNER JOIN product p  ON b.idproduct = p.idproduct  
+ INNER JOIN bill bi  ON b.idbill = bi.idbill  
+where b.idbill='".$id."'");
+
+	echo mysqli_num_rows($result);
+
+	return mysqli_num_rows($result);
+}
+
+function updateSellBill($conn,$id,$sell){
+	return db_query($conn, "Update bill set  sell=".$sell."  WHERE idbill ='".$id."'");
+}
+
+function getForPdf($conn,$id) {
+
+ 
+	return db_query($conn, "Select b.idbill ,b.SoLuong,p.name,(p.sell*b.SoLuong) as sell from bill_detail  b   INNER JOIN product p  ON b.idproduct = p.idproduct  
+ INNER JOIN bill bi  ON b.idbill = bi.idbill  
+where b.idbill='".$id."'");
+
+}
 function createDetailBill($conn, $title, $description) {
 	db_query($conn, "INSERT INTO `bill`(`title`, `description`) VALUES ('$title', '$description')");
 }
@@ -40,7 +62,4 @@ function getDetailBill($conn, $id) {
  INNER JOIN bill bi  ON b.idbill = bi.idbill  
 where b.idbill_detail ='".$id."'");
 }
-
- 
-
  ?>

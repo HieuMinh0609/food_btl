@@ -4,7 +4,7 @@
 			 
 			<div class="link_header">
 				<i class="glyphicon glyphicon-hand-right"></i>
-				<a href="#">Home</a>
+				<a href="HomePage.php">Home</a>
 				<span>/</span>
 				<span>Bill</span>
 			</div>
@@ -65,7 +65,9 @@
 		["idbill" => "ID", 
 		"place" => "Địa Chỉ",
 		"nameMember" => "Tên Khách Hàng",
+		"phone"=> "Điện thoại",
 		"createdate" => "Ngày Tháng",
+		"sell" =>"Giá",
 		"status" => "Trạng Thái"
 	],
 		"billedit.php","idbill","billdelete.php","billedit_detail.php");

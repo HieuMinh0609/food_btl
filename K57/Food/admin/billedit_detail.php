@@ -29,7 +29,9 @@ if(isset($_POST['updateDetail'])){
         <button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"close\">&times;</button>
         <strong>Success!</strong> update success.
         </div>");
-    
+        $totalWhenUpdate = getTotalSellBill($conn,escapePostParam($conn, "id_bill"));
+        echo escapePostParam($conn, "id_bill");
+        updateSellBill($conn,escapePostParam($conn, "id_bill"),$totalWhenUpdate);
         db_close($conn);
 }
 
@@ -41,10 +43,53 @@ if(isset($_POST['deleteDetail'])){
         <button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"close\">&times;</button>
         <strong>Delete!</strong> delete success.
         </div>");
-    
+        $totalWhenDelete = getTotalSellBill($conn,escapePostParam($conn, "id_bill"));
+        updateSellBill($conn,escapePostParam($conn, "id_bill"),$totalWhenDelete);
         db_close($conn);
 }
+
 ?>
+ 
+<?php 
+if(isset($_POST['exportHD'])){
+require("../lib/ffpdf.php");
+$conn = db_connect(); 
+if (isset($_GET['id']))   {
+        $idPdf = $_GET['id'];
+}
+$prop = array('HeaderColor'=>array(255,150,100),
+            'color1'=>array(210,245,255),
+            'color2'=>array(255,255,210),
+            'margin'=>4);
+
+ob_end_clean();  
+
+ob_start();  
+
+$pdf = new PDF_HTML();
+$pdf->AddPage();
+$pdf->AddFont('DejaVu','','DejaVuSansCondensed.ttf',true);
+$pdf->SetFont('DejaVu','',14);
+$pdf->Cell(80);
+$pdf->Cell(20,10,'Hóa đơn bán hàng ',4,4,'C');
+$link = $pdf->AddLink();
+$pdf->SetFont('');
+$pdf->SetLink($link);
+$pdf->Image('images/logo.png',10,12,30,0,'','http://www.fpdf.org');
+$pdf->SetLeftMargin(45);
+$pdf->SetFontSize(14);
+$pdf->Table($conn,"Select b.idbill ,b.SoLuong as 'Số Lượng',p.name as 'Tên sản phẩm',(p.sell*b.SoLuong) as 'Tiền' from bill_detail  b   INNER JOIN product p  ON b.idproduct = p.idproduct  
+ INNER JOIN bill bi  ON b.idbill = bi.idbill  
+where b.idbill='".$idPdf."'",$prop);
+
+$pdf->Table($conn,"Select  b.place as 'Địa chỉ', m.fullname as 'Tên khách hàng',m.phone as 'Điện thoại',b.sell as 'Thành Tiền' from bill b INNER JOIN member m  ON b.idmember = m.idmember where b.idbill='".$idPdf."'",$prop);
+$pdf->Output();
+
+ob_end_flush();
+db_close($conn);
+}
+?>
+
 
  <div id="form_register" class="col-md-8 col-sm-8 col-8">
 
@@ -55,20 +100,20 @@ if(isset($_POST['deleteDetail'])){
 
     
             <div class="loginname">
-                <input required readonly  style="padding-left: 158px;" class="input_name "  id="id_detailbill" type="text"  name="id_detailbill"  placeholder="ID Bill" value= ""   >
+                <input required readonly  style="padding-left: 158px;" class="input_name "  id="id_detailbill" type="text"  name="id_detailbill"  placeholder="ID Detail" value= ""   >
                 <span class="focus-input100"></span>
                 <span class="symbol-input100">
 						<i class="glyphicon glyphicon-tag"></i>
-                         <span style="  margin-left: 5px;">ID Bill</span>
+                         <span style="  margin-left: 5px;">ID Detail</span>
 						</span>
 
             </div>
             <div class="loginname">
-                <input required readonly style="padding-left: 158px;" class="input_name " id="id_bill" type="text"  name="id_bill"  placeholder="ID Detail" >
+                <input required readonly style="padding-left: 158px;" class="input_name " id="id_bill" type="text"  name="id_bill"  placeholder="ID Bill" >
                 <span class="focus-input100"></span>
                 <span class="symbol-input100">
                         <i class="glyphicon glyphicon-tag"></i>
-                         <span style="  margin-left: 5px;">ID Detail</span>
+                         <span style="  margin-left: 5px;">ID Bill</span>
                         </span>
 
             </div>
@@ -105,7 +150,7 @@ if(isset($_POST['deleteDetail'])){
 </div>
 <br><br>
   <div class="col-md-4 col-sm-4 col-4">
-      <img id="imageProduct" src="images/Tasty-Chinese-Food-HD-picture-01.jpg" class="img-circle" id="viewImage" width="250px" height="250ox">
+      <img id="imageProduct" src="images/picture.jpg" class="img-circle" id="viewImage" width="250px" height="250ox">
                     
 </div>
 </div>
@@ -129,6 +174,15 @@ if(isset($_POST['deleteDetail'])){
     db_close($conn);
 ?>
 
+
+
+
+<div class="container">
+   <form method="POST">
+        <input type="hidden" value="<?=$id ?>">
+        <button name="exportHD" class="btn btn-info">Export HD</button>
+   </form>
+</div>
 <script type="text/javascript">
  
 

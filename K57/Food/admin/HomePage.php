@@ -1,11 +1,5 @@
-<?php include 'includes/header.php'; ?>
-<script type="text/javascript" src="content/jquery-3.4.1.min.js"></script>
-	 <link rel="stylesheet"  type="text/css" href="content/bootstrap-3.1.1-dist/css/bootstrap.min.css">
-	 <script type="text/javascript" src="content/bootstrap-3.1.1-dist/js/bootstrap.min.js"></script>
-	 <link rel="stylesheet" type="text/css" href="content/style.css">
-
-	  <link rel="stylesheet" type="text/css" href="content/file.css">
-	  <script  language="JavaScript"  type="text/javascript" src="content/file.js"></script>
+<?php include 'includes/header.php'?>
+ 
 <div class="container-fluid">
 		<div class="row">
 			 
@@ -82,4 +76,4 @@
 		</form>
 		
 	</div>
-<?php include 'includes/footer.php'; ?>
+<?php include 'includes/footer.php'?>

@@ -57,7 +57,7 @@
 			  <button id="button_product" class="btn btn_primary_button dropdown-toggle" type="button" data-toggle="dropdown">Product
 			  <span class="caret"></span></button>
 			  <ul class="dropdown-menu">
-			    <li><a href="#">Product</a></li>
+			    <li><a href="productlist.php">Product</a></li>
 			    <li><a href="#">Sale</a></li>
 			    
 			  </ul>

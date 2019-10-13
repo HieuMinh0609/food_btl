@@ -80,14 +80,23 @@ function printTable($data, $columns, $editLink = "",$id="", $deleteLink = "",$ed
 	echo("</div >");
 }
 
-function printCombobox($data, $selectedValue, $name, $emptyText = "select item") {
-	echo("<select name=\"$name\">
-	<option value=\"\">$emptyText</option>");
+function printCombobox($data, $selectedValue, $name, $id = "",$name2="") {
+	 
 	while ($record = mysqli_fetch_assoc($data)) {
-		$selected = $selectedValue == $record["id"] ? "selected" : "";
-		echo("<option value=\"{$record["id"]}\" $selected>{$record["title"]}</option>");
+		$selected = $selectedValue == $record["$id"] ? "selected" : "";
+		echo("<option value=\"{$record["$id"]}\" $selected>{$record["$name2"]}</option>");
 	}
-	echo("</select>");
+	 
 }
+function printCombobox_two($data, $name, $id = "",$name2="") {
+	 
+	while ($record = mysqli_fetch_assoc($data)) {
+		echo("<option value=\"{$record["$id"]}\">{$record["$name2"]}</option>");
+	}
+	 
+}
+
+
+
 ?>
 

@@ -75,6 +75,7 @@ if(isset($_POST["status"])){
 				 <div class="col-md-2 "  style="float: right">
 				    <button class="btn btn-danger">Update</button>
 				</div>
+			</div>
  </form>      
 </div>
  </div>

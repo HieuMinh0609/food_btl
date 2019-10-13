@@ -30,7 +30,7 @@ if(isset($_POST['updateDetail'])){
         <strong>Success!</strong> update success.
         </div>");
         $totalWhenUpdate = getTotalSellBill($conn,escapePostParam($conn, "id_bill"));
-        echo escapePostParam($conn, "id_bill");
+         
         updateSellBill($conn,escapePostParam($conn, "id_bill"),$totalWhenUpdate);
         db_close($conn);
 }

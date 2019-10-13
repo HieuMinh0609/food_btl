@@ -16,9 +16,9 @@ function getTotalSellBill($conn,$id){
  INNER JOIN bill bi  ON b.idbill = bi.idbill  
 where b.idbill='".$id."'");
 
-	echo mysqli_num_rows($result);
+	 
 
-	return mysqli_num_rows($result);
+	return mysqli_fetch_assoc($result)['total'];
 }
 
 function updateSellBill($conn,$id,$sell){

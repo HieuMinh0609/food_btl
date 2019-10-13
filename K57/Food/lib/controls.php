@@ -1,5 +1,5 @@
 <?php 
-function printTable($data, $columns, $editLink = "",$id="", $deleteLink = "",$editdetailLink = "", $deleteCondition = null, $btn = "")
+function printTable($data, $columns, $editLink = "",$id="", $deleteLink = "",$editdetailLink = "", $deleteCondition = null, $btn = "",$addLink="")
 {
 	
 	echo("<div class=\"container\">");
@@ -9,6 +9,9 @@ function printTable($data, $columns, $editLink = "",$id="", $deleteLink = "",$ed
 	echo("<tr>");
 	foreach ($columns as $column) {
 		echo ("<th scope=\"col\">$column</th>");
+	}
+	if($addLink != "") {
+		echo("<th ></th>");
 	}
 	if($editLink != "") {
 		echo("<th ></th>");
@@ -43,6 +46,9 @@ function printTable($data, $columns, $editLink = "",$id="", $deleteLink = "",$ed
 				echo ("<td class=\"table_show\" >$row[$field]</td>");
 			}
 			
+		}
+		if($addLink != "") {
+				echo("<td style=\" width: 30px;\" ><a  class=\"btn btn-primary\" href=\"$addLink?id={$row["$id"]}\">Add</a></td>");	
 		}
 		if($editdetailLink != "") {
 				echo("<td style=\" width: 30px;\" ><a  class=\"btn btn-primary\" href=\"$editdetailLink?id={$row["$id"]}\">Detail</a></td>");	

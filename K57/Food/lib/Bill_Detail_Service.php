@@ -51,6 +51,7 @@ function deleteBillDeail($conn, $id) {
 }
 
 function db_query_detailbill($conn, $query) {
+	$result = mysqli_query($conn, $query);
 	if(!$result) {
 		die("Error execute query: " . mysqli_error($conn));
 	}

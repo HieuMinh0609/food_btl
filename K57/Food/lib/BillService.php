@@ -18,13 +18,20 @@ function findProperty($conn,$mapArray,$offset="",$limit="") {
      $sql .="Order by "." b.status desc";
  	if($offset!=="" ){
  		$sql .= " limit  " .$offset .",". $limit;
- 	}
-
-
-
- 	 
+ 	} 
 	return db_query($conn,$sql);
 }
+
+function CountTypeChart($conn,$typeid,$month,$year){
+	$sql ="select sum(SoLuong) as count from  bill_detail db inner join product p on p.idproduct = db.idProduct inner join bill b on db.idbill=b.idbill
+		where p.typeid =$typeid And month(b.createdate) = $month and year(b.createdate)  =$year And b.status=0";
+
+
+	$resultCountTypeChart=db_query($conn,$sql);
+
+	return mysqli_fetch_assoc($resultCountTypeChart)['count'];
+}
+
 
 
 function createBill($conn, $title, $description) {
@@ -33,10 +40,7 @@ function createBill($conn, $title, $description) {
 
 function updateBill($conn, $id, $status) {
 	 
-
 	 db_query($conn, "UPDATE `bill` SET `status`='$status'  WHERE idbill = $id");
-	 
-	
 }
 
 function deleteBill($conn, $id) { 

@@ -1,79 +1,74 @@
 <?php include 'includes/header.php'?>
  
+ <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+
+
 <div class="container-fluid">
 		<div class="row">
 			 
 			<div class="link_header">
 				<i class="glyphicon glyphicon-hand-right"></i>
 				<a href="#">Home</a>
-				<span>/</span>
-				<span>Product</span>
+				 
 			</div>
 		
 		</div>
-	</div>
-	<div class="container">
+	 
 		
-		<form>
-			<div class="row">
-				<div class="col-md-10 col-sm-10 col-xs-10">
-					<div class="input_search_area">
-						<input  class="input_search" type="text"  placeholder="Code Invoice" >
-						<span class="focus-input100"></span>
-						<div class="symbol-input100">
-						 
-							<i class="glyphicon glyphicon-search"></i>
-						 
-						</div>
-						
-					</div>
-					
-				</div>
-				<div class="col-md-2 col-sm-2 col-xs-2">
-						<button type="button" class="btn_sreach btn btn-success">Search</button>
-					</div>
-		</div>
-		<div id="button_select" class="row">
-				<button class="btn btn_primary_button btn_select" title="Delete"><i class="glyphicon glyphicon-trash"></i></button>
-				<button class="btn btn_primary_button btn_select"  title="Edit" ><i class="glyphicon glyphicon-pencil"></i></button>
-				<button class="btn btn_primary_button btn_select"  title="Add"><i class="gglyphicon glyphicon-plus"></i></button>
-				 
-				
-		</div>
-		<div class="row">
-			<table class="table table_backcolor table-bordered">
-			  <thead>
-			    <tr>
-			      <th scope="col">#</th>
-			      <th scope="col">First</th>
-			      <th scope="col">Last</th>
-			      <th scope="col">Handle</th>
-			    </tr>
-			  </thead>
-			  <tbody>
-			    <tr>
-			      <th scope="row">1</th>
-			      <td>Mark</td>
-			      <td>Otto</td>
-			      <td>@mdo</td>
-			    </tr>
-			    <tr>
-			      <th scope="row">2</th>
-			      <td>Jacob</td>
-			      <td>Thornton</td>
-			      <td>@fat</td>
-			    </tr>
-			    <tr>
-			      <th scope="row">3</th>
-			      <td>Larry the Bird</td>
-			      <td>@twitter</td>
-			      <td>@mdoipp</td>
-			    </tr>
-			  </tbody>
-			</table>
-						
-		</div>
-		</form>
-		
+	 
+		<br>
+		<div id="columnchart_values" style="width: 900px; height: 300px;"></div>
+<br><br>
 	</div>
+<?php 
+	require("../lib/controls.php");
+	require_once("../lib/db.php");
+	require("../lib/BillService.php");
+	$timenow = date('Y-m-d H:i:s');
+	$month = date("m",strtotime($timenow));
+	$year = date("Y",strtotime($timenow));
+
+
+	$conn = db_connect();
+	$hotfood =  CountTypeChart($conn,1,$month,$year);
+	$fastfood =  CountTypeChart($conn,2,$month,$year);
+	$drink =  CountTypeChart($conn,3,$month,$year);
+
+	db_close($conn);
+
+
+?>
+<script type="text/javascript">
+	google.charts.load("current", {packages:['corechart']});
+    google.charts.setOnLoadCallback(drawChart);
+    function drawChart() {
+      var data = google.visualization.arrayToDataTable([
+        ["Element", "Density", { role: "style" } ],
+        ["Food Hot", <?=$hotfood?>, "#b87333"],
+        ["Food Fast", <?=$fastfood ?>, "silver"],
+        ["Drinks",<?=$drink ?>, "gold"]
+        
+      ]);
+
+      var view = new google.visualization.DataView(data);
+      view.setColumns([0, 1,
+                       { calc: "stringify",
+                         sourceColumn: 1,
+                         type: "string",
+                         role: "annotation" },
+                       2]);
+
+      var options = {
+        title: "Statistics in <?= $month ?> month in  <?= $year ?> year",
+        width: 600,
+        height: 400,
+        bar: {groupWidth: "95%"},
+        legend: { position: "none" },
+      };
+      var chart = new google.visualization.ColumnChart(document.getElementById("columnchart_values"));
+      chart.draw(view, options);
+  }
+
+
+</script>
 <?php include 'includes/footer.php'?>

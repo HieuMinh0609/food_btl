@@ -12,6 +12,23 @@
 	  <script  language="JavaScript"  type="text/javascript" src="content/file.js"></script>
 </head>
 <body>
+
+<?php 
+	require_once("../lib/db.php");
+	require("../lib/FeedBackService.php");
+
+ 
+    $conn = db_connect();
+	$row = countNewFeedBack($conn);	
+	
+
+	db_close($conn);
+ 
+
+
+?>
+
+
 <div class="container-fluid">
 		<div id="header_admin" class="row">
 			<div id="set_size_img" class="col-md-3 col-sm-6 col-xs-6">
@@ -32,7 +49,7 @@
 			
 				<div class="email_icon" title="Email">
 					
-					<a href="">
+					<a href="feedbackShow.php">
 
 					<span class="messenge_icon">
 						<i class="glyphicon glyphicon-envelope"></i>
@@ -41,7 +58,8 @@
 					</a>
 				</div>
 				<div class="count_messenge">
-							<span>20</span>
+				<span><?php echo $row ?></span>
+				 
 				</div>	
 				
 			</div>

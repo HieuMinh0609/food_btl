@@ -58,7 +58,7 @@
 			  <span class="caret"></span></button>
 			  <ul class="dropdown-menu">
 			    <li><a href="productlist.php">Product</a></li>
-			    <li><a href="#">Sale</a></li>
+			    <li><a href="salelist.php">Sale</a></li>
 			    
 			  </ul>
 			</div>

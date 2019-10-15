@@ -9,7 +9,7 @@
                 <i class="glyphicon glyphicon-hand-right"></i>
                 <a href="HomePage.php">Home</a>
                 <span>/</span>
-                <a href="productlist.php">Product</a>
+                <a href="productlist.php">Sale</a>
                 <span>/</span>
                 <span>Add</span>
             </div>

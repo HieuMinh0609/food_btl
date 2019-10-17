@@ -41,7 +41,7 @@ if(isset($_POST['saveMember'])){
         updateMember($conn,$idmember, 
             escapePostParam($conn, "nameLogin"), 
             escapePostParam($conn,"nameFull"), 
-            escapePostParam($conn,"passWord"),
+            sha1(escapePostParam($conn,"passWord")),
             escapePostParam($conn,"role"), 
             escapePostParam($conn,"sex"), 
             escapePostParam($conn,"place"),

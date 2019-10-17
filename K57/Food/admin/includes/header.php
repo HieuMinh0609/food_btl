@@ -16,7 +16,7 @@
 <?php 
 	require_once("../lib/db.php");
 	require("../lib/FeedBackService.php");
-
+	require_once '../lib/auth.php';
  
     $conn = db_connect();
 	$row = countNewFeedBack($conn);	
@@ -24,7 +24,9 @@
 
 	db_close($conn);
  
-
+	 if (isset($_GET['logout']))   {
+        doLogout();
+	}
 
 ?>
 
@@ -38,10 +40,13 @@
 				<a data-toggle="dropdown" href="">
 					<div class="infor_user" title="Information">
 					<img class="img_user"  src="images/man.png" alt="admin">
-					<button class="name_user">Admin</button> 
+					<button class="name_user">Hello, <?php
+					
+					echo getLoggedInUser();
+				?></button> 
 					<ul  class="dropdown-menu">
 				    <li><a href="#">Product</a></li>
-				    <li><a href="#"><i class="glyphicon glyphicon-off"></i> Logout</a></li>
+				    <li><a name="logout" href="HomePage.php?logout=logout"><i class="glyphicon glyphicon-off"></i> Logout</a></li>
 			    
 			  	</ul>
 				</div>
@@ -95,3 +100,6 @@
 	<div class="card_hr row" style="margin: 0">
 		<hr>
 	</div>
+<?php 
+checkLoggedInAdmin();
+?>

@@ -12,11 +12,14 @@
 	  <script  language="JavaScript"  type="text/javascript" src="content/file.js"></script>
 </head>
 <body>
-
 <?php 
 	require_once("../lib/db.php");
 	require("../lib/FeedBackService.php");
 	require_once '../lib/auth.php';
+	checkLoggedInAdmin();
+?>
+<?php 
+	
  
     $conn = db_connect();
 	$row = countNewFeedBack($conn);	
@@ -100,6 +103,3 @@
 	<div class="card_hr row" style="margin: 0">
 		<hr>
 	</div>
-<?php 
-checkLoggedInAdmin();
-?>

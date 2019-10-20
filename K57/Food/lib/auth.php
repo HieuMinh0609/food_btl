@@ -19,7 +19,7 @@ function doLogin($conn,$username, $password) {
 	return false;
 }
 
-function checkLoggedIn() {
+function checkLoggedInWeb() {
 	startSession();
 	if(!isset($_SESSION["username"])) {
 		redirect("../login/login.php");
@@ -29,7 +29,7 @@ function checkLoggedIn() {
 
 function checkLoggedInAdmin() {
 	startSession();
-	if(isset($_SESSION["username"]) && ($_SESSION["idrole"])!='2') {
+	if(!isset($_SESSION["username"]) && ($_SESSION["idrole"])!='2') {
 		redirect("../login/login.php");
 	}
 }
@@ -68,7 +68,11 @@ function redirect($page) {
 
 function getLoggedInUser(){ 
 	startSession();
-	return $_SESSION["username"];
+	if(isset($_SESSION["username"]) ){
+		return $_SESSION["username"];
+	}
+	return null;
+	
 }
 
 function doLogout() {

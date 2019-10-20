@@ -54,13 +54,15 @@ if(isset($_POST['register'])){
             $isMember = isMember($conn,$username, sha1($password));
             $result=  $isMember['idrole'];
         }
-
-        if('2'==$result){
+        if($resultMess==""){
+              if('2'==$result){
             redirect("../admin/HomePage.php");
         }else if('1'==$result) {
             redirect("../web/index.php");
         }
          
+        }
+      
 
         db_close($conn);
 

@@ -1,19 +1,28 @@
 <?php 
 require 'conf.php';
 
-function doLogin($conn,$username, $password) {
+function doLogin($conn,$username, $password){
 	if(isValid($conn,$username, $password)==1) {
-		startSession();
+		$username_cookie =$username;
+		$password_cookie =$password;
+
+
+	startSession();
 
 		$isMember = isMember($conn,$username, $password);
-		
-
-
 		$_SESSION["username"] = $username;
+
 	startSession();
 		$_SESSION["idrole"] =$isMember['idrole'] ;
 
+	 if(!isset($_COOKIE['username']) && !isset($_COOKIE['password'])){
+	 	setcookie("username", $username_cookie, time() + (86400 * 30), "/");
+		setcookie("password", $password_cookie, time() + (86400 * 30), "/");
+	 }
 		
+
+
+
 		return true;
 	}	
 	return false;
@@ -75,9 +84,19 @@ function getLoggedInUser(){
 	
 }
 
+
 function doLogout() {
 	startSession();
 	session_destroy();
+
+	$username_cookie = 'username';
+	$password_cookie = 'password';
+	unset($_COOKIE[$username_cookie]);
+	// empty value and expiration one hour before
+	  setcookie($username_cookie, "", time() - 3600,"/");
+	unset($_COOKIE[$password_cookie]);
+	  setcookie($password_cookie,"", time() - 3600,"/");
+
 	redirect("../login/login.php");
 }
 

@@ -27,7 +27,10 @@
 
 	db_close($conn);
  
-	 if (isset($_GET['logout']))   {
+	if (isset($_GET['logout']))   {
+
+	 
+
         doLogout();
 	}
 

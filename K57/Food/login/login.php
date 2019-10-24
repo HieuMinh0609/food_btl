@@ -34,13 +34,31 @@ if(isset($_POST['register'])){
 }
 
 
- 
+ if(isset($_COOKIE['username']) && isset($_COOKIE['password'])){
+        $conn = db_connect();
+        $username =   $_COOKIE["username"];
+        $password =   $_COOKIE["password"];
+      
+        
+        if(!doLogin($conn,$username, $password)) {
+            $resultMess ="Invalid username or password!";
+        }else{
+            $isMember = isMember($conn,$username,$password);
+            $result=  $isMember['idrole'];
+        }
+        if($resultMess==""){
+              if('2'==$result){
+            redirect("../admin/HomePage.php");
+        }else if('1'==$result) {
+            redirect("../web/index.php");
+        }
+         
+        }
+        db_close($conn);
 
-
-
+}
 
     $resultMess="";
-
     if(isset($_POST["login"])) {
      $conn = db_connect();
         $username =  escapePostParam($conn, "namelogin");

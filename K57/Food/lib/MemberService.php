@@ -66,10 +66,23 @@ function deleteMember($conn, $id) {
 	 	return $result;
 }
 
- 
+function updatePassword($conn,$password,$phone) {
+	 
+	 
+	 db_query($conn, "UPDATE `member` SET password='$password'  WHERE phone = '$phone'");
+
+	
+} 
+
 
 function getSingleMember($conn, $id) {
 	return db_single($conn, "SELECT * FROM `member` WHERE idmember = $id");
+}
+
+
+function getSingleMember_forgotpass($conn, $phone,$namelogin) {
+	$result =  db_query($conn, "SELECT * FROM `member` WHERE phone ='$phone' and namelogin='$namelogin'");
+	return mysqli_num_rows($result);
 }
 
 function newsCountOfMember($conn, $id) {
@@ -79,4 +92,13 @@ LIMIT 0,1");
 }
 
 
+function generateRandomString($length = 10) {
+    $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    $charactersLength = strlen($characters);
+    $randomString = '';
+    for ($i = 0; $i < $length; $i++) {
+        $randomString .= $characters[rand(0, $charactersLength - 1)];
+    }
+    return $randomString;
+}
  ?>

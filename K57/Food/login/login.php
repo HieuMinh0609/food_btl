@@ -48,7 +48,7 @@ if(isset($_POST['register'])){
         }
         if($resultMess==""){
               if('2'==$result){
-            redirect("../admin/HomePage.php");
+            redirect("../admin/viewhome/HomePage.php");
         }else if('1'==$result) {
             redirect("../web/index.php");
         }
@@ -74,7 +74,7 @@ if(isset($_POST['register'])){
         }
         if($resultMess==""){
               if('2'==$result){
-            redirect("../admin/HomePage.php");
+            redirect("../admin/viewhome/HomePage.php");
         }else if('1'==$result) {
             redirect("../web/index.php");
         }
@@ -126,6 +126,12 @@ if(isset($_POST['register'])){
                     <tr>
                         <td colspan="3" style="text-align:center">
                             <button type="submit" name="login"   class="dangkysumbit">Đăng nhập</button>
+                        </td>
+                    </tr>
+                        <tr>
+                        <td colspan="3" style="text-align:center">
+                            <i onclick="forgot_pass()" class="forgot_pass" style="cursor: pointer ; color: #9797de;">Quên mật khẩu?</i>
+                            <br>
                         </td>
                     </tr>
 
@@ -196,7 +202,39 @@ if(isset($_POST['register'])){
 
     </div>
     <script>
+    
+    function forgot_pass(){
+           $t_email = prompt("Nhập email bạn", '');
+           $t_namelogin = prompt("Nhập name login bạn", '');
+           $t_phone = prompt("Nhập phone number bạn", '');
+           
+             var dataArray=[];
 
+            dataArray["email"]= $t_email;
+            dataArray["namelogin"]= $t_namelogin;
+            dataArray["phone"]=$t_phone;
+        $.ajax({
+        url : 'ajax/ResetPassword.php',
+        type : 'post',
+        dataType : 'json',
+        data : {'email': $t_email , 'phone': $t_phone ,'namelogin' : $t_namelogin},
+        success : function (result)
+        {
+            if(result==1){
+                alert("Success! check email of you");
+            }else{
+                 alert("Wrong! name login or phone not true");
+            }
+            
+        
+        },
+        error: function (result){
+            alert("Wrong! name login or phone not true");       
+        }
+    });
+
+    }
+ 
     function validateData() {
       var username = document.getElementById("inputnamelogin")
         if(username.value ==""){

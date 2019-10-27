@@ -186,3 +186,7 @@ border:none;
     color: red;
     
 }
+
+.forgot_pass:hover{
+    color: red;
+}

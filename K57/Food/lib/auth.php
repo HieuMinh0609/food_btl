@@ -31,7 +31,7 @@ function doLogin($conn,$username, $password){
 function checkLoggedInWeb() {
 	startSession();
 	if(!isset($_SESSION["username"])) {
-		redirect("../login/login.php");
+		redirect("../../login/login.php");
 	}
 }
 
@@ -39,7 +39,7 @@ function checkLoggedInWeb() {
 function checkLoggedInAdmin() {
 	startSession();
 	if(!isset($_SESSION["username"]) && ($_SESSION["idrole"])!='2') {
-		redirect("../login/login.php");
+		redirect("../../login/login.php");
 	}
 }
 
@@ -97,7 +97,7 @@ function doLogout() {
 	unset($_COOKIE[$password_cookie]);
 	  setcookie($password_cookie,"", time() - 3600,"/");
 
-	redirect("../login/login.php");
+	redirect("../../login/login.php");
 }
 
 ?>

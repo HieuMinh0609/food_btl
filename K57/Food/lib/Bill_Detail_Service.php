@@ -15,7 +15,6 @@ function getTotalSellBill($conn,$id){
 	$result= db_query($conn, "Select sum((p.sell*b.SoLuong)) as 'total' from bill_detail  b   INNER JOIN product p  ON b.idproduct = p.idproduct  
  INNER JOIN bill bi  ON b.idbill = bi.idbill  
 where b.idbill='".$id."'");
-
 	 
 
 	return mysqli_fetch_assoc($result)['total'];

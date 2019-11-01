@@ -13,13 +13,13 @@
 					  <!-- The slideshow -->
 					  <div class="carousel-inner">
 					    <div class="carousel-item active">
-					      <img src="../image/banner1.jpg" alt="" width="850" height="350">
+					      <img src="../../image/banner1.jpg" alt="" width="850" height="350">
 					    </div>
 					    <div class="carousel-item">
-					      <img src="../image/banner2.jpg" alt="" width="850" height="350">
+					      <img src="../../image/banner2.jpg" alt="" width="850" height="350">
 					    </div>
 					    <div class="carousel-item">
-					      <img src="../image/banner3.jpg" alt="" width="850" height="350">
+					      <img src="../../image/banner3.jpg" alt="" width="850" height="350">
 					    </div>
 					  </div>
 					  
@@ -34,8 +34,8 @@
 				</div>
 				<div class="col-md-4 slide1">
 					<div class="row">
-						<img src="../image/bn1.jpg" alt=""  >
-						<img src="../image/bn2.jpg" alt="" >
+						<img src="../../image/bn1.jpg" alt=""  >
+						<img src="../../image/bn2.jpg" alt="" >
 					</div>
 					
 				</div>

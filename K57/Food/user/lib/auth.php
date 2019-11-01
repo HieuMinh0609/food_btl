@@ -4,7 +4,7 @@ function doLogin($username, $password) {
 	if(isValid($username, $password)!=0) {
 		startSession();
 		$_SESSION["username"] = $username;
-		redirect("layout.php");	
+		redirect("../layout/layout.php");	
 	}	
 	else{
 		echo "sai tài khoản hoặc mật khẩu";

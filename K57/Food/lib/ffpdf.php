@@ -1,6 +1,6 @@
 <?php 
- require("../lib/pdf/fpdf.php");
- require("../lib/tpdf/tfpdf.php");
+ require("../../lib/pdf/fpdf.php");
+ require("../../lib/tpdf/tfpdf.php");
 //function hex2dec
 //returns an associative array (keys: R,G,B) from
 //a hex html code (e.g. #3FE5AA)

@@ -7,5 +7,5 @@
 	function create_BillDetail($conn,$id_bill, $soluong, $id_product){
 		return db_query($conn,"INSERT INTO `bill_detail`( `idbill`, `SoLuong`, `idproduct`) VALUES ($id_bill,$soluong,$id_product)");
 	}
-
+	
  ?>

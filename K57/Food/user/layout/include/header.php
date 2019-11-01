@@ -1,7 +1,7 @@
 <?php 
-	include '../lib/auth.php';
-	include '../lib/cart_service.php';
-	include '../lib/member_service.php';
+	include '../../lib/auth.php';
+	include '../../lib/cart_service.php';
+	include '../../lib/member_service.php';
 	if (isset($_GET['logout']))   {
         doLogout();
 	}
@@ -11,7 +11,7 @@
 	<form action="" method="POST">
 		<div class="header-top row">
 		<div class="header-left col-md-3">
-			<img src="../image/logo.png" alt="">
+			<img src="../../image/logo.png" alt="">
 		</div>
 		<div class="header-center col-md-4">
 			<div class="form-timkiem row">
@@ -23,18 +23,18 @@
 		<div class="header-right col-md-5 row">
 			<div class="col-md-4 dangky-dangnhap">
 				<a class="dangky" href="" name="signup">Signup |</a>
-				<a class="dangnhap" href="login.php" name="login">Login</a>
+				<a class="dangnhap" href="../login/login.php" name="login">Login</a>
 			</div>
 			<div class="col-md-5 name-dangxuat">
 				<span> 
 				<?php
-					require_once '../lib/auth.php';
-					require_once '../lib/db.php';
+					require_once '../../lib/auth.php';
+					require_once '../../lib/db.php';
 					$username = getLoggedInUser();
 					echo $username;
 				?>|</span>
 				
-				<a href="header.php?logout=logout" class="dangxuat" name="logout">Logout</a>
+				<a href="../login/login.php?logout=logout" class="dangxuat" name="logout">Logout</a>
 			</div>
 			<?php 
 				if($username!=""){
@@ -47,7 +47,7 @@
 				}
 				
 			 ?>
-			<div class="col-md-3 giohang"><a href="cart.php">Giỏ hàng(<?php echo $count ?>)</a></div>
+			<div class="col-md-3 giohang"><a href="../cart/cart.php">Giỏ hàng(<?php echo $count ?>)</a></div>
 		</div>
 	</div>
 	</form>

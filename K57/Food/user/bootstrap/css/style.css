@@ -415,6 +415,12 @@ body{
 .pagination-detail{
 	margin-right: 100px;
 }
+.pagination-detail a{
+	border: 1px solid blue;
+	padding: 1px 3px 1px 3px;
+	background-color: blue;
+	color: white;
+}
 /* end product-detail*/
 
 .footer{

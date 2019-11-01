@@ -3,11 +3,11 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Document</title>
-	 <link rel="stylesheet" href="../bootstrap/css/style.css">
-	<link rel="stylesheet" href="../bootstrap/css/bootstrap.min.css">
-	<link rel="stylesheet" href="../bootstrap/js/bootstrap.min.js">
-	<script src="../bootstrap/js/jquery-3.4.1.min.js"></script>
-	 <script src="../bootstrap/js/bootstrap.min.js"></script>
+	 <link rel="stylesheet" href="../../bootstrap/css/style.css">
+	<link rel="stylesheet" href="../../bootstrap/css/bootstrap.min.css">
+	<link rel="stylesheet" href="../../bootstrap/js/bootstrap.min.js">
+	<script src="../../bootstrap/js/jquery-3.4.1.min.js"></script>
+	 <script src="../../bootstrap/js/bootstrap.min.js"></script>
 	<style>
 		.sua{
 			border: 1px solid blue;
@@ -29,7 +29,7 @@
 </head>
 <body>
 	<?php 
-		include_once('../layout/header.php') ;
+		include_once('../include/header.php') ;
 	?>
 <form  method="POST">
 	<div class="row">
@@ -49,10 +49,10 @@
 	
 					
 							<?php 
-								include_once ('../lib/db.php');
-								include_once ('../lib/controls.php');
-								include_once ('../lib/cart_service.php');
-								include_once ('../lib/auth.php');
+								include_once ('../../lib/db.php');
+								include_once ('../../lib/controls.php');
+								include_once ('../../lib/cart_service.php');
+								include_once ('../../lib/auth.php');
 								$tongtien1=0;
 								$con =db_connect();
 								$id_user = getIdUser(getLoggedInUser());
@@ -69,14 +69,14 @@
 									
 								</td>
 								<td class="hinhanh">
-									<img src="../image/<?php echo $dong['anh']; ?>" alt="">
+									<img src="../../image/<?php echo $dong['anh']; ?>" alt="">
 								</td>
 								
 								<td class="tensanpham"><?php echo $dong['tensanpham']; ?></td>
 								<td class="gia"><?php echo number_format($promotion=$dong['giaban']*(100-$dong['giakm'])/100) ; ?> đ</td>
 								<td class="soluong">
 									<?php $amount= $dong['soluong']; ?>
-									<input  type="number" style="width: 100px;" class="form-control input-number" value="<?php echo $amount; ?>" name="<?php echo $id_product; ?>">
+									<input  type="text" style="width: 100px;" class="form-control input-number" value="<?php echo $amount; ?>" name="<?php echo $id_product; ?> " disabled>
 									
 								</td>
 								<td class="thanhtien"><?php $sell = $dong['thanhtien'];
@@ -188,7 +188,7 @@
 		
 		<?php 
 
-			include "../lib/bill-service.php";
+			include "../../lib/bill-service.php";
 			if(isset($_POST['muatiep'])){
 				echo "<script>  	
 					 	window.location.href = 'layout.php';
@@ -203,7 +203,7 @@
 					$place = $_POST['place'];
 					
 					echo "mã bill:". $id_bill;
-					createBill($con,$id_bill,$place,$id_user,$tongtien1);
+					
 					foreach ($mangid as $key => $value) {
 						echo "<script>
 							document.getElementById('$value').checked=true;
@@ -211,6 +211,19 @@
 						$result_thanhtien= getCart_ProductId($con, $id_user, $value);
 						while ($dong_thanhtien = mysqli_fetch_array($result_thanhtien)) {
 							$tongtien1 += $dong_thanhtien['thanhtien'];
+							$soluong11 = $dong_thanhtien['soluong'];
+						}
+						
+
+					}
+					createBill($con,$id_bill,$place,$id_user,$tongtien1);
+
+					foreach ($mangid as $key => $value) {
+						echo "<script>
+							document.getElementById('$value').checked=true;
+						</script>";
+						$result_thanhtien= getCart_ProductId($con, $id_user, $value);
+						while ($dong_thanhtien = mysqli_fetch_array($result_thanhtien)) {
 							$soluong11 = $dong_thanhtien['soluong'];
 						}
 						deleteCart($con, $id_user, $value);

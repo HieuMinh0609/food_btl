@@ -3,16 +3,16 @@
 <head>
 	<meta charset="UTF-8">
 	<title>User</title>
-	<link rel="stylesheet" href="../bootstrap/css/style.css">
-	<link rel="stylesheet" href="../bootstrap/css/bootstrap.min.css">
-	<link rel="stylesheet" href="../bootstrap/js/bootstrap.min.js">
-	<script src="../bootstrap/js/jquery-3.4.1.min.js"></script>
-	 <script src="../bootstrap/js/bootstrap.min.js"></script></head>
+	<link rel="stylesheet" href="../../bootstrap/css/style.css">
+	<link rel="stylesheet" href="../../bootstrap/css/bootstrap.min.css">
+	<link rel="stylesheet" href="../../bootstrap/js/bootstrap.min.js">
+	<script src="../../bootstrap/js/jquery-3.4.1.min.js"></script>
+	 <script src="../../bootstrap/js/bootstrap.min.js"></script></head>
 <body>
 	
 	<?php 
 
-	include '../lib/auth.php';
+	include '../../lib/auth.php';
 
 	if(isset($_POST["login"])) {
 		$username = $_POST["username"];

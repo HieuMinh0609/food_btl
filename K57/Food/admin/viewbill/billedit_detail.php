@@ -18,6 +18,8 @@
     require("../../lib/controls.php");
     require_once("../../lib/db.php");
     require("../../lib/BillService.php");
+    require("../../lib/SaleService.php");
+    require("../../lib/ProductService.php");
     require("../../lib/Bill_Detail_Service.php");
  
 if(isset($_POST['updateDetail'])){
@@ -29,9 +31,54 @@ if(isset($_POST['updateDetail'])){
         <button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"close\">&times;</button>
         <strong>Success!</strong> update success.
         </div>");
-        $totalWhenUpdate = getTotalSellBill($conn,escapePostParam($conn, "id_bill"));
+        //$totalWhenUpdate = getTotalSellBill($conn,escapePostParam($conn, "id_bill"));
          
-        updateSellBill($conn,escapePostParam($conn, "id_bill"),$totalWhenUpdate);
+        $listIdProductSale = getAllSale($conn);
+        $listDetailBill = getAllDeatailBill($conn,escapePostParam($conn, "id_bill"));
+
+        while($detail = mysqli_fetch_assoc($listDetailBill)){
+            $details[]=$detail;
+        }
+
+        while($sale = mysqli_fetch_assoc($listIdProductSale)){
+             $sales[]=$sale;
+        }
+        $sumMoney=0;
+
+        foreach($details as $detail) { 
+          foreach ($sales as $sale ) {
+             if($detail["idproduct"] == $sale["idproduct"]){
+                    $sumMoney+= ((getSingleProduct($conn,$detail["idproduct"])["sell"]) - ((getSingleProduct($conn,$detail["idproduct"])["sell"]) * ($sale["percent"]/100)))* ($detail["SoLuong"]);
+                         
+                    $idSales[]=$detail["idproduct"] ;
+                } 
+
+               
+          }
+        }
+
+        foreach($details as $detail) { 
+            $kt=0;
+          foreach ($idSales as $idSale ) {
+              if($detail["idproduct"] == $idSale){
+                     $kt=1;
+            } 
+
+               
+          }
+
+          if($kt==0){
+            $sumMoney+=  getSingleProduct($conn,$detail["idproduct"])["sell"]* ($detail["SoLuong"]); 
+          }
+
+        }
+
+        
+        
+
+       // echo "Sum:".$sumMoney;
+        updateSellBill($conn,escapePostParam($conn, "id_bill"),$sumMoney);
+
         db_close($conn);
 }
 
@@ -43,8 +90,51 @@ if(isset($_POST['deleteDetail'])){
         <button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"close\">&times;</button>
         <strong>Delete!</strong> delete success.
         </div>");
-        $totalWhenDelete = getTotalSellBill($conn,escapePostParam($conn, "id_bill"));
-        updateSellBill($conn,escapePostParam($conn, "id_bill"),$totalWhenDelete);
+
+
+        //$totalWhenDelete = getTotalSellBill($conn,escapePostParam($conn, "id_bill"));
+         $listIdProductSale = getAllSale($conn);
+        $listDetailBill = getAllDeatailBill($conn,escapePostParam($conn, "id_bill"));
+
+        while($detail = mysqli_fetch_assoc($listDetailBill)){
+            $details[]=$detail;
+        }
+
+        while($sale = mysqli_fetch_assoc($listIdProductSale)){
+             $sales[]=$sale;
+        }
+        $sumMoney=0;
+
+        foreach($details as $detail) { 
+          foreach ($sales as $sale ) {
+             if($detail["idproduct"] == $sale["idproduct"]){
+                    $sumMoney+= ((getSingleProduct($conn,$detail["idproduct"])["sell"]) - ((getSingleProduct($conn,$detail["idproduct"])["sell"]) * ($sale["percent"]/100)))* ($detail["SoLuong"]);
+                         
+                    $idSales[]=$detail["idproduct"] ;
+                } 
+
+               
+          }
+        }
+
+        foreach($details as $detail) { 
+            $kt=0;
+          foreach ($idSales as $idSale ) {
+              if($detail["idproduct"] == $idSale){
+                     $kt=1;
+            } 
+
+               
+          }
+
+          if($kt==0){
+            $sumMoney+=  getSingleProduct($conn,$detail["idproduct"])["sell"]* ($detail["SoLuong"]); 
+          }
+
+        }
+
+
+        updateSellBill($conn,escapePostParam($conn, "id_bill"),$sumMoney);
         db_close($conn);
 }
 
@@ -75,7 +165,7 @@ $pdf->Cell(20,10,'Hóa đơn bán hàng ',4,4,'C');
 $link = $pdf->AddLink();
 $pdf->SetFont('');
 $pdf->SetLink($link);
-$pdf->Image('images/logo.png',10,12,30,0,'','http://www.fpdf.org');
+$pdf->Image('../images/logo.png',10,12,30,0,'','http://www.fpdf.org');
 $pdf->SetLeftMargin(45);
 $pdf->SetFontSize(14);
 $pdf->Table($conn,"Select b.idbill ,b.SoLuong as 'Số Lượng',p.name as 'Tên sản phẩm',(p.sell*b.SoLuong) as 'Tiền' from bill_detail  b   INNER JOIN product p  ON b.idproduct = p.idproduct  

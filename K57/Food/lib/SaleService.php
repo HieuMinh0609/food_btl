@@ -21,10 +21,6 @@ function findPropertySale($conn,$mapArray,$offset="",$limit="") {
  	if($offset!=="" ){
  		$sql .= " limit  " .$offset .",". $limit;
  	}
-
-
-
- 	 
 	return db_query($conn,$sql);
 }
 
@@ -56,9 +52,7 @@ function db_query_Sale($conn, $query) {
 
 
 function updateSale($conn,$id, $idproduct, $percent ) {
-	 
-	 
-
+	
 	 db_query_Sale($conn, "UPDATE `sale` SET `idproduct`='$idproduct',`percent`='$percent'  WHERE idsale = $id");
 
 	
@@ -69,7 +63,9 @@ function deleteSale($conn, $id) {
 	 	return $result;
 }
 
- 
+function getIdProduct($conn){
+	return mysqli_query($conn, "SELECT idproduct FROM sale ");
+}
 
 function getSingleSale($conn, $id) {
 	return db_single($conn, "SELECT s.idsale,s.idproduct , p.name,p.image ,s.percent FROM sale s inner join product p on s.idproduct = p.idproduct Where  idsale= $id");

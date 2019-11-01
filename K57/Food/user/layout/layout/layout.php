@@ -3,32 +3,32 @@
 <head>
 	<meta charset="UTF-8">
 	<title>User</title>
-	<link rel="stylesheet" href="../bootstrap/css/style.css">
-	<link rel="stylesheet" href="../bootstrap/css/bootstrap.min.css">
-	<link rel="stylesheet" href="../bootstrap/js/bootstrap.min.js">
-	<script src="../bootstrap/js/jquery-3.4.1.min.js"></script>
-	 <script src="../bootstrap/js/bootstrap.min.js"></script>
+	<link rel="stylesheet" href="../../bootstrap/css/style.css">
+	<link rel="stylesheet" href="../../bootstrap/css/bootstrap.min.css">
+	<link rel="stylesheet" href="../../bootstrap/js/bootstrap.min.js">
+	<script src="../../bootstrap/js/jquery-3.4.1.min.js"></script>
+	 <script src="../../bootstrap/js/bootstrap.min.js"></script>
 </head>
 <body>
 	
-	<?php include_once('../layout/header.php') ?>
+	<?php include_once('../include/header.php') ?>
 
 	<div class="center">
 		
-		<?php include_once('../layout/banner.php') ?>
+		<?php include_once('../include/banner.php') ?>
 		<div class="center-bottom"><br><br>
-			<?php include_once('../layout/douong_product.php') ?>
+			<?php include_once('../product/douong_product.php') ?>
 			<br>
-			<?php include_once('../layout/doan_fast_product.php') ?>
+			<?php include_once('../product/doan_fast_product.php') ?>
 			<br>
-			<?php include_once('../layout/doan_hot_product.php') ?>
+			<?php include_once('../product/doan_hot_product.php') ?>
 			
 			
 		</div>
 		<?php 
-			include_once ('../lib/db.php');
-			include_once ('../lib/controls.php');
-			include_once ('../lib/cart_service.php');
+			include_once ('../../lib/db.php');
+			include_once ('../../lib/controls.php');
+			include_once ('../../lib/cart_service.php');
 			$con =db_connect();
 			if(isset($_POST['submit_timkiem'])){
 				$input_timkiem = $_POST['input_timkiem'];
@@ -66,6 +66,6 @@
 		
 		
 	</div>
-	<?php include_once('../layout/footer.php') ?>
+	<?php include_once('../include/footer.php') ?>
 </body>
 </html>

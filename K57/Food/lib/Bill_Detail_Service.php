@@ -4,7 +4,7 @@ require_once 'db.php';
 function getAllDeatailBill($conn,$id) {
 
  
-	return db_query($conn, "Select  b.idbill_detail,b.idbill ,b.SoLuong,p.name,p.image from bill_detail  b   INNER JOIN product p  ON b.idproduct = p.idproduct  
+	return db_query($conn, "Select  b.idbill_detail,b.idbill,b.idproduct ,b.SoLuong,p.name,p.image from bill_detail  b   INNER JOIN product p  ON b.idproduct = p.idproduct  
  INNER JOIN bill bi  ON b.idbill = bi.idbill  
 where b.idbill ='".$id."'");
 

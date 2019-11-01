@@ -3,24 +3,24 @@
 <head>
 	<meta charset="UTF-8">
 	<title>User</title>
-	<link rel="stylesheet" href="../bootstrap/css/style.css">
-	<link rel="stylesheet" href="../bootstrap/css/bootstrap.min.css">
-	<link rel="stylesheet" href="../bootstrap/js/bootstrap.min.js">
-	<script src="../bootstrap/js/jquery-3.4.1.min.js"></script>
-	 <script src="../bootstrap/js/bootstrap.min.js"></script>
+	<link rel="stylesheet" href="../../bootstrap/css/style.css">
+	<link rel="stylesheet" href="../../bootstrap/css/bootstrap.min.css">
+	<link rel="stylesheet" href="../../bootstrap/js/bootstrap.min.js">
+	<script src="../../bootstrap/js/jquery-3.4.1.min.js"></script>
+	 <script src="../../bootstrap/js/bootstrap.min.js"></script>
 </head>
 <body>
 	
-	<?php include_once('../layout/header.php') ?>
+	<?php include_once('../include/header.php') ?>
 	<?php 
-		include_once ('../lib/db.php');
-		include_once ('../lib/controls.php');
-		include_once ('../lib/auth.php');
+		include_once ('../../lib/db.php');
+		include_once ('../../lib/controls.php');
+		include_once ('../../lib/auth.php');
 
-		$name_product = $_GET['name'];
+		
 		$con =db_connect();
 		
-		$result = Total_TimkiemSanPham($con, $name_product);
+		$result = Total_Product_Hot($con);
 		$row = mysqli_fetch_assoc($result);
 		$total_records = $row['total'];
 
@@ -39,11 +39,8 @@
 
 		$start = ($current_page - 1) * $limit;
 
-		$result = Timkiem_SanPham($con,$name_product,$start,$limit);
-		echo "<script>  	
-				 	$('.input_timkiem').val('$name_product');
-				 </script>";			
-			
+		$result = Product_Doan_Hot($con,$start,$limit);
+
 	?>
 	
 
@@ -58,7 +55,7 @@
 				<div class="product">
 					<form action="" method="POST">						
 				<a href="product-detail.php?action=detail&id=<?php echo $id_product?>">
-					<img src="../image/<?php echo $dong['image']; ?>" alt=""></a><br>
+					<img src="../../image/<?php echo $dong['image']; ?>" alt=""></a><br>
 				<?php $id_product= $dong['idproduct'];?>
 				<a href="product-detail.php?action=detail&id=<?php echo $id_product?>"><span class="product-name"><?php echo substr($dong['name'],0,20) ; ?></span></a><br>
 				<span class="product-price-khuyenmai">
@@ -67,7 +64,7 @@
 				</span>
 				<span class="product-price"><?php echo number_format($dong['sell']) ; ?> đ</span>	<br> <br>
 				<!-- <button class="btn btn-primary" name="themgiohang1" >Thêm vào giỏ hàng</button> -->
-				<a href="layout_timkiem.php?action=add&id=<?php echo $id_product?>&promotion=<?php echo $promotion ?>" class="themgiohang">Thêm vào giỏ hàng</a>
+				<a href="full-hotfood.php?action=add&id=<?php echo $id_product?>&promotion=<?php echo $promotion ?>" class="themgiohang">Thêm vào giỏ hàng</a>
 			</form>
 					
 				</div>
@@ -98,7 +95,7 @@
 					updateCart($con, $id_user, $id_product, $amount,$sell);	
 				}
 				echo "<script>  	
-					 	window.location.href = 'layout_timkiem.php?name=$input_timkiem';
+					 	window.location.href = 'full-hotfood.php';
 					 </script>";			
 				}
 				else {
@@ -123,64 +120,26 @@
    <?php 
     
 	    if ($current_page > 1 && $total_page > 1){
-	        echo '<a href="full-fastfood.php?page='.($current_page-1).'">Prev</a> ';
+	        echo '<a href="full-hotfood.php?page='.($current_page-1).'">Prev</a> ';
 	    }
 
 	    
 	    for ($i = 1; $i <= $total_page; $i++){
 	        
 	       
-	            echo '<a class="trang" href="full-fastfood.php?page='.$i.'">'.$i.'</a> ';
+	            echo '<a class="trang" href="full-hotfood.php?page='.$i.'">'.$i.'</a> ';
 	        
 	    }
 
 	    
 	    if ($current_page < $total_page && $total_page > 1){
-	        echo '<a href="full-fastfood.php?page='.($current_page+1).'">Next</a> ';
+	        echo '<a href="full-hotfood.php?page='.($current_page+1).'">Next</a> ';
 	    }
 	   ?>
 	</div>
     <br>
 	<hr>
 	</div>
-	<?php 
-			include_once ('../lib/db.php');
-			include_once ('../lib/controls.php');
-			include_once ('../lib/cart_service.php');
-			$con =db_connect();
-			if(isset($_POST['submit_timkiem'])){
-				$input_timkiem = $_POST['input_timkiem'];
-				$result_tksp = Total_TimkiemSanPham($con, $input_timkiem);
-				$row_tksp = mysqli_fetch_assoc($result_tksp);
-				$total_records_tksp = $row_tksp['total'];
-				echo $total_records_tksp;
-				if($input_timkiem != ''){
-					
-					if($total_records_tksp != 0){
-						echo "<script>  	
-					 		window.location.href = 'layout_timkiem.php?name=$input_timkiem';
-					 	</script>";
-					 	
-					}
-					else{
-						echo "<script>  	
-					 	window.location.href = 'layout.php';
-					 </script>";
-					 
-					}
-
-					
-				}	
-				else{
-					echo "<script>  	
-					 	window.location.href = 'layout.php';
-					 </script>";
-					 
-				}		
-				
-			}
-		 ?>
-	<?php include_once('../layout/footer.php') ?>
-	
+	<?php include_once('../include/footer.php') ?>
 </body>
 </html>

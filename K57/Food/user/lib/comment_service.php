@@ -6,4 +6,7 @@
 	function TotalComment_Id($conn, $id_product){
 		return db_query($conn, "SELECT count(idcomment) as 'total' FROM comment where idproduct ='$id_product' order by idcomment DESC ");
 	}
+	function CreateComment($conn, $content, $id_product, $rate, $id_user){
+		return db_query($conn, "INSERT INTO `comment` (`idcomment`, `content`, `datecomment`, `idproduct`, `rate`, `idmember`) VALUES (NULL, '$content', now(), $id_product, $rate, $id_user)");
+	}
  ?>

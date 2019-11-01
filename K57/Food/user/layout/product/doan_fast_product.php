@@ -1,16 +1,16 @@
 
 <div class="danhmuc">
 	<span>Danh sách đồ ăn nhanh</span>
-	<a href="full-fastfood.php">Xem tất cả >>></a>
+	<a href="../product/full-fastfood.php">Xem tất cả >>></a>
 </div>
 			<br>
 			<hr>
 			<div class="danhsach row">
 				<?php 
-					include_once ('../lib/db.php');
-					include_once ('../lib/controls.php');
-					include_once ('../lib/cart_service.php');
-					include_once ('../lib/auth.php');
+					include_once ('../../lib/db.php');
+					include_once ('../../lib/controls.php');
+					include_once ('../../lib/cart_service.php');
+					include_once ('../../lib/auth.php');
 					
 					$con =db_connect();
 					$result = Product_Doan_Fast($con);
@@ -23,9 +23,11 @@
 						
 						
 						<form action="" method="POST">						
-							<a href="#"><img src="../image/<?php echo $dong['image']; ?>" alt=""></a><br>
-							<?php $id_product= $dong['idproduct'];?>
-							<a href=""><span class="product-name"><?php echo substr($dong['name'],0,30); ?></span></a><br>
+							<a href="../product/product-detail.php?action=detail&id=<?php echo $id_product?>">
+					<img src="../../image/<?php echo $dong['image']; ?>" alt=""></a><br>
+				<?php $id_product= $dong['idproduct'];?>
+				<a href="../product/product-detail.php?action=detail&id=<?php echo $id_product?>">
+					<span class="product-name"><?php echo substr($dong['name'],0,20) ; ?></span></a><br>
 							<span class="product-price-khuyenmai">
 								<?php echo number_format($promotion=$dong['sell']*(100-$dong['promotion'])/100) ; ?> đ
 							</span>

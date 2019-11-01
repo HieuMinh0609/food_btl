@@ -3,18 +3,18 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Document</title>
-	<link rel="stylesheet" href="../bootstrap/css/style.css">
-	<link rel="stylesheet" href="../bootstrap/css/bootstrap.min.css">
-	<link rel="stylesheet" href="../bootstrap/js/bootstrap.min.js">
-	<script src="../bootstrap/js/jquery-3.4.1.min.js"></script>
-	 <script src="../bootstrap/js/bootstrap.min.js"></script>
+	<link rel="stylesheet" href="../../bootstrap/css/style.css">
+	<link rel="stylesheet" href="../../bootstrap/css/bootstrap.min.css">
+	<link rel="stylesheet" href="../../bootstrap/js/bootstrap.min.js">
+	<script src="../../bootstrap/js/jquery-3.4.1.min.js"></script>
+	 <script src="../../bootstrap/js/bootstrap.min.js"></script>
 </head>
 <body>
 	<?php 
-		include_once('../layout/header.php') ;
-		include_once('../lib/db.php') ;
-		include_once('../lib/auth.php') ;
-		include_once('../lib/cart_service.php') ;
+		include_once('../include/header.php') ;
+		include_once('../../lib/db.php') ;
+		include_once('../../lib/auth.php') ;
+		include_once('../../lib/cart_service.php') ;
 
 		$con =db_connect();
 		if(isset($_GET['id']) ){
@@ -41,7 +41,7 @@
 			<tr class="product-image">
 				<td class="title">Hình ảnh</td>
 				<td>
-					<img src="../image/<?php echo $dong['anh'] ?>" alt="">
+					<img src="../../image/<?php echo $dong['anh'] ?>" alt="">
 				</td>			
 			</tr>
 			<hr>

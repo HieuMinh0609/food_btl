@@ -3,19 +3,20 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Document</title>
-	<link rel="stylesheet" href="../bootstrap/css/style.css">
-	<link rel="stylesheet" href="../bootstrap/css/bootstrap.min.css">
-	<link rel="stylesheet" href="../bootstrap/js/bootstrap.min.js">
-	<script src="../bootstrap/js/jquery-3.4.1.min.js"></script>
-	 <script src="../bootstrap/js/bootstrap.min.js"></script>
+	<link rel="stylesheet" href="../../bootstrap/css/style.css">
+	<link rel="stylesheet" href="../../bootstrap/css/bootstrap.min.css">
+	<link rel="stylesheet" href="../../bootstrap/js/bootstrap.min.js">
+	<script src="../../bootstrap/js/jquery-3.4.1.min.js"></script>
+	 <script src="../../bootstrap/js/bootstrap.min.js"></script>
 </head>
 <body>
 	<?php 
-		include_once "header.php";
-		include_once ('../lib/db.php');
-		include_once ('../lib/controls.php');
-		include_once ('../lib/cart_service.php');
-		include_once ('../lib/comment_service.php');
+		include_once "../include/header.php";
+		include_once ('../../lib/db.php');
+		include_once ('../../lib/auth.php');
+		include_once ('../../lib/controls.php');
+		include_once ('../../lib/cart_service.php');
+		include_once ('../../lib/comment_service.php');
 		
 		$con =db_connect();
 		
@@ -27,14 +28,25 @@
 		$result = GetProduct_Id($con,$id_product);
 		
 	  ?>
-	  
+	  <?php while($dong = mysqli_fetch_array($result)){ ?>
+	  <form action="" method="POST">
 	 <div class="center-left row">
 	 	<div class="col-md-8 row">
 	 		<div class="col-md-6 image">
-				<img src="../image/0001.jpg" alt="">
+				<img src="../../image/<?php echo $dong['image'] ?>" alt="">
+				<br>
+				<br><br><br>
+				
+					<div class="danhgia row">
+						<div class="col-md-2"></div>
+						<span class="col-md-4">Đánh giá</span>
+						<input type="number" class="form-control col-md-2" value="5" max="5" min="1" name="rate"> 
+						
+					</div>
+				
 	 		</div>
 		 	<div class="col-md-6 product-info">
-		 		<?php while($dong = mysqli_fetch_array($result)){ ?>
+		 		
 				<div class="product-name"><?php echo substr($dong['name'],0,80); ?></div>
 				<hr>
 				<span class="product-danhgia">4</span>
@@ -51,14 +63,12 @@
 				<button class="btn btn-primary themgiohang">Thêm vào giỏ hàng</button>
 				<button class="btn btn-danger muatiep">Mua tiếp</button>
 				<hr>
-				<form action="" method="POST">
-				<div class="danhgia row">
-					<span class="col-md-4">Đánh giá</span>
-					<input type="number" class="form-control col-md-2" value="5" max="5" min="1" ><button class="btn btn-primary col-md-3">Đánh giá</button>
-					
-				</div>
-	
-			</form>
+				<div class="binhluan col-md-8">
+ 				<span >Bình luận</span>
+ 				<textarea class="form-control" name="textbinhluan" id="" cols="20" rows="3"></textarea>
+ 				<button class="btn btn-primary" name="binhluan">Bình luận</button>
+ 			</div>
+ 			<hr>
 		 	</div>
 
 	 		<?php } ?>
@@ -66,21 +76,22 @@
 	 	</div>
 
 	 	<div class="col-md-4 comment">
-			<div class="binhluan col-md-8">
- 				<span >Bình luận</span>
- 				<textarea class="form-control" name="" id="" cols="20" rows="3"></textarea>
- 				<button class="btn btn-primary">Bình luận</button>
- 			</div>
- 			<hr>
+			
 	 		<div class="danhsachbinhluan">
+	 			<h3>Danh sách bình luận</h3>
+	 			<hr>
 	 			<?php 
 					$result1 = TotalComment_Id($con, $id_product);
+					
 					$row = mysqli_fetch_assoc($result1);
 					$total_records = $row['total'];
-					echo $total_records;
+					
 
 					$current_page = isset($_GET['page']) ? $_GET['page'] : 1;
-					$limit = 2;
+					if($current_page ==0){
+						$current_page =1;
+					}
+					$limit = 5;
 
 					$total_page = ceil($total_records / $limit);
 
@@ -93,10 +104,15 @@
 					}
 
 					$start = ($current_page - 1) * $limit;
-
+					if($start <0){
+						$start =0;
+					}
+					echo $id_product ."-".$start."-".$limit;
 					$result1 = getComment_IdProduct($con,$id_product,$start,$limit);
+					
 	 				while ($dong1 = mysqli_fetch_array($result1)) {
-						?>	
+						?>
+						<?php echo "string"; ?>
 			 			<span><?php echo $dong1['namelogin'] ?></span><br>
 					 	<p><?php echo $dong1['content']; ?></p>
 				 		<hr>
@@ -127,7 +143,25 @@
 		 	</div>
 	 	</div>
 	 </div>
-	
+	</form>
+	<?php 
+		$id_user = getIdUser(getLoggedInUser());
+		if(isset($_POST['binhluan'])){
+			$content = $_POST['textbinhluan'];
+
+			$rate = $_POST['rate'];
+			
+			echo $rate;
+			echo $content;
+			CreateComment($con, $content, $id_product, $rate, $id_user);
+			echo '<script> 
+				window.location.href="product-detail.php?action=detail&id='.($id_product).'&page='.(1).'";
+			</script>';
+		
+			
+		}
+		
+	 ?>
 	 
 	 
 	 

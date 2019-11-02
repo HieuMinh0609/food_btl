@@ -1,7 +1,13 @@
+
+ 
+
 <?php 
 	include '../../lib/auth.php';
 	include '../../lib/cart_service.php';
 	include '../../lib/member_service.php';
+
+	checkLoggedIn();
+	
 	if (isset($_GET['logout']))   {
         doLogout();
 	}
@@ -22,8 +28,8 @@
 		</div>
 		<div class="header-right col-md-5 row">
 			<div class="col-md-4 dangky-dangnhap">
-				<a class="dangky" href="" name="signup">Signup |</a>
-				<a class="dangnhap" href="../login/login.php" name="login">Login</a>
+				<a class="dangky" href="../../../login/login.php" name="signup">Signup |</a>
+				<a class="dangnhap" href="../../../login/login.php" name="login">Login</a>
 			</div>
 			<div class="col-md-5 name-dangxuat">
 				<span> 
@@ -34,7 +40,7 @@
 					echo $username;
 				?>|</span>
 				
-				<a href="../login/login.php?logout=logout" class="dangxuat" name="logout">Logout</a>
+				<a href="?logout=logout" class="dangxuat" name="logout">Logout</a>
 			</div>
 			<?php 
 				if($username!=""){

@@ -21,7 +21,7 @@ function getIdUser($username){
 function checkLoggedIn() {
 	startSession();
 	if(!isset($_SESSION["username"])) {
-		redirect("login.php");
+		redirect("../../../login/login.php");
 	}
 }
 
@@ -56,8 +56,15 @@ function getLoggedInUser(){
 function doLogout() {
 	startSession();
 	session_destroy();
-	echo "string";
-	redirect("login.php");
+	
+	$username_cookie = 'username';
+	$password_cookie = 'password';
+	unset($_COOKIE[$username_cookie]);
+	// empty value and expiration one hour before
+	setcookie($username_cookie, "", time() - 3600,"/");
+	unset($_COOKIE[$password_cookie]);
+	setcookie($password_cookie,"", time() - 3600,"/");
+	redirect("../../../login/login.php");
 }
 
 ?>

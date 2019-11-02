@@ -51,9 +51,7 @@ if(isset($_POST['updateDetail'])){
                     $sumMoney+= ((getSingleProduct($conn,$detail["idproduct"])["sell"]) - ((getSingleProduct($conn,$detail["idproduct"])["sell"]) * ($sale["percent"]/100)))* ($detail["SoLuong"]);
                          
                     $idSales[]=$detail["idproduct"] ;
-                } 
-
-               
+                }                
           }
         }
 
@@ -62,20 +60,12 @@ if(isset($_POST['updateDetail'])){
           foreach ($idSales as $idSale ) {
               if($detail["idproduct"] == $idSale){
                      $kt=1;
-            } 
-
-               
+            }               
           }
-
           if($kt==0){
             $sumMoney+=  getSingleProduct($conn,$detail["idproduct"])["sell"]* ($detail["SoLuong"]); 
           }
-
         }
-
-        
-        
-
        // echo "Sum:".$sumMoney;
         updateSellBill($conn,escapePostParam($conn, "id_bill"),$sumMoney);
 

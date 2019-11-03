@@ -13,13 +13,11 @@
 	
 	<?php include_once('header.php') ?>
 	<div>
-		<div class="name-show">
-			<h2>Flower Restaurant</h2>
+		<div class="name-shop">
+			<h2>Điện thoại: 0987654321</h2>
+			<h2>Email: flower12@gmail.com</h2>
 		</div>
-		<div class="diachi">Số 37, Nguyễn Khánh Toàn, Cầu Giấy, Hà Nội</div>
-		<div class="mota">
-			Mỗi mùa Trung thu về, các thành viên trong gia đình luôn cố gắng sắp xếp công việc để về nhà đoàn tụ. Hình ảnh bên dưới vầng trăng tròn sáng ngày rằm, trẻ con tíu tít với đèn ông sao, quà bánh, người lớn quây quần trên bàn vừa ...
-		</div>
+		
 	</div>
 	
 

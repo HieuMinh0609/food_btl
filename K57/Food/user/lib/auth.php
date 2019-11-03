@@ -1,6 +1,6 @@
 <?php 
 require_once 'db.php';
-function doLogin($username, $password) {
+function doLogin1($username, $password) {
 	if(isValid($username, $password)!=0) {
 		startSession();
 		$_SESSION["username"] = $username;

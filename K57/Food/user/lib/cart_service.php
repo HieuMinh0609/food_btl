@@ -13,10 +13,10 @@ function checkCart($conn,$id_user,$id_product){
 	return $num_rows;
 }
 function getCart_ProductId($conn, $id_user, $id_product) {
-	return db_query($conn, "SELECT product.idproduct as 'idproduct', name as 'tensanpham',product.promotion as 'giakm',product.sell as 'giaban',product.image as 'anh',cart.amount as 'soluong',cart.sell as 'thanhtien' FROM cart,product WHERE cart.id_product= product.idproduct and product.idproduct=$id_product and id_user= $id_user");
+	return db_query($conn, "SELECT product.idproduct as 'idproduct', name as 'tensanpham',sale.percent as 'giakm',product.sell as 'giaban',product.image as 'anh',cart.amount as 'soluong',cart.sell as 'thanhtien' FROM cart,product LEFT join sale on product.idproduct = sale.idproduct WHERE cart.id_product= product.idproduct and product.idproduct=$id_product and id_user= $id_user");
 }
 function getAllCart($conn, $id_user) {
-	return db_query($conn, "SELECT product.idproduct as 'idproduct', name as 'tensanpham',product.promotion as 'giakm',product.sell as 'giaban',product.image as 'anh',cart.amount as 'soluong',cart.sell as 'thanhtien' FROM cart,product WHERE cart.id_product= product.idproduct and id_user=$id_user");
+	return db_query($conn, "SELECT product.idproduct as 'idproduct', name as 'tensanpham',sale.percent as 'giakm',product.sell as 'giaban',product.image as 'anh',cart.amount as 'soluong',cart.sell as 'thanhtien' FROM cart, product LEFT join sale on product.idproduct = sale.idproduct WHERE cart.id_product= product.idproduct and id_user=$id_user");
 }
 
 function createCart($conn, $id_user, $id_product, $sell) {
@@ -25,7 +25,7 @@ function createCart($conn, $id_user, $id_product, $sell) {
 }
 
 function updateCart($conn, $id_user, $id_product, $amount,$sell) {
-	db_query($conn, "UPDATE `cart` SET `amount`='$amount', sell='$sell' WHERE id_user = $id_user and id_product='$id_product' ");
+	db_query($conn, "UPDATE `cart` SET `amount`='$amount', sell='$sell' WHERE id_user = '$id_user' and id_product='$id_product' ");
 }
 
 function deleteCart($conn, $id_user, $id_product) {

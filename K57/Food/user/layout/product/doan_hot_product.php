@@ -70,7 +70,7 @@
 						}
 						else {
 							 echo "<script> 
-							 	window.location.href = 'login.php';
+							 	window.location.href = '../../../login/login.php';
 							 								 </script>";
 						}
 						echo "<script> 							 	

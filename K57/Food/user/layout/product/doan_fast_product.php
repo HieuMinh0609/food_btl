@@ -46,7 +46,7 @@
 						if(getLoggedInUser() !=''){
 							$id_product=intval($_GET['id']);
 							$promotion=intval($_GET['promotion']);
-							echo $id_product;
+							
 							if(checkCart($con, $id_user, $id_product)==0){
 								echo "create";
 								echo $promotion;
@@ -71,7 +71,7 @@
 						}
 						else {
 							 echo "<script> 
-							 	window.location.href = 'login.php';
+							 	window.location.href = '../../../login/login.php';
 							 								 </script>";
 						}
 						echo "<script> 							 	

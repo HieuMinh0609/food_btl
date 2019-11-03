@@ -100,8 +100,13 @@
 				}
 				echo "<script>  	
 					 	window.location.href = 'layout_timkiem.php?name=$input_timkiem';
+
 					 </script>";			
-				}
+				
+				echo "<script>  	
+				 	$('.input_timkiem').val('$name_product');
+				 </script>";
+			}
 				else {
 					 echo "<script> 
 					 	window.location.href = 'login.php';

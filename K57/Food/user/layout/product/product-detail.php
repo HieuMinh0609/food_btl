@@ -49,7 +49,7 @@
 		 		
 				<div class="product-name"><?php echo substr($dong['name'],0,80); ?></div>
 				<hr>
-				<span class="product-danhgia">4</span>
+				<span class="product-danhgia">Số sao: <?php echo round( $dong['avg_rate'], 1, PHP_ROUND_HALF_UP); ?></span>
 				<div class="product-price-promotion">
 					<?php 
 						 $promotion=$dong['sell']*(100-$dong['promotion'])/100;
@@ -60,8 +60,8 @@
 				<div class="product-price"><?php echo number_format($dong['sell'])?> đ</div>
 				<div class="product-mota"><?php echo substr($dong['information'],0,270); ?></div>
 				
-				<button class="btn btn-primary themgiohang">Thêm vào giỏ hàng</button>
-				<button class="btn btn-danger muatiep">Mua tiếp</button>
+				<button class="btn btn-primary themgiohang" name="themvaogiohang">Thêm vào giỏ hàng</button>
+				<button class="btn btn-danger muatiep" name="muatiep">Mua tiếp</button>
 				<hr>
 				<div class="binhluan col-md-8">
  				<span >Bình luận</span>
@@ -107,12 +107,12 @@
 					if($start <0){
 						$start =0;
 					}
-					echo $id_product ."-".$start."-".$limit;
+					
 					$result1 = getComment_IdProduct($con,$id_product,$start,$limit);
 					
 	 				while ($dong1 = mysqli_fetch_array($result1)) {
 						?>
-						<?php echo "string"; ?>
+						
 			 			<span><?php echo $dong1['namelogin'] ?></span><br>
 					 	<p><?php echo $dong1['content']; ?></p>
 				 		<hr>
@@ -145,20 +145,79 @@
 	 </div>
 	</form>
 	<?php 
-		$id_user = getIdUser(getLoggedInUser());
+		
+		
 		if(isset($_POST['binhluan'])){
-			$content = $_POST['textbinhluan'];
+			if(getLoggedInUser() != ''){
+				$id_user = getIdUser(getLoggedInUser());
+				$content = $_POST['textbinhluan'];
 
-			$rate = $_POST['rate'];
+				$rate = $_POST['rate'];
+				
+				
+				CreateComment($con, $content, $id_product, $rate, $id_user);
+				echo '<script> 
+					window.location.href="product-detail.php?action=detail&id='.($id_product).'&page='.(1).'";
+				</script>';
+			}
+			else{
+				 echo "<script> 
+					 	window.location.href = '../../../login/login.php';
+				 </script>";
+			}
 			
-			echo $rate;
-			echo $content;
-			CreateComment($con, $content, $id_product, $rate, $id_user);
-			echo '<script> 
-				window.location.href="product-detail.php?action=detail&id='.($id_product).'&page='.(1).'";
-			</script>';
 		
 			
+		}
+		if(isset($_POST['themvaogiohang'])){
+			if(isset($_GET['action']) && $_GET['action']=="detail"){
+				$id_product=intval($_GET['id']);	
+			}
+			if(getLoggedInUser() !=''){
+				$id_user = getIdUser(getLoggedInUser());
+
+				
+				if(checkCart($con, $id_user, $id_product)==0){
+					
+					createCart($con,$id_user,$id_product,$promotion);
+					
+				}
+				else{
+					
+					$row = getAmount($con, $id_user, $id_product);
+					while ($dong = mysqli_fetch_array($row)) {
+						$amount = $dong['amount'];
+					}
+					
+					$amount = $amount +1;
+					$sell =$promotion * $amount;
+					echo $amount;
+					echo $promotion;
+					echo $sell;
+					updateCart($con, $id_user, $id_product, $amount,$sell);	
+					
+				}
+				echo '<script>  	
+				 	window.location.href = "product-detail.php?action=detail&id='.($id_product).'&page='.(1).'";
+				 </script>';	
+				 echo "
+					<script>  	
+				 		location.reload();
+				 	</script>";		
+			
+			}
+			else {
+				 echo "<script> 
+				 	window.location.href = '../../../login/login.php';
+				 								 </script>";
+			}
+			
+
+		}
+		if(isset($_POST['muatiep'])){
+			 echo "<script> 
+				 	window.location.href = '../layout/layout.php';
+				 								 </script>";
 		}
 		
 	 ?>

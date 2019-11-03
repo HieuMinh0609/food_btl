@@ -65,8 +65,7 @@
 				<span class="product-price"><?php echo number_format($dong['sell']) ; ?> đ</span>	<br> <br>
 				<!-- <button class="btn btn-primary" name="themgiohang1" >Thêm vào giỏ hàng</button> -->
 				<a href="full-douong.php?action=add&id=<?php echo $id_product?>&promotion=<?php echo $promotion ?>" class="themgiohang">Thêm vào giỏ hàng</a>
-			</form>
-					
+			</form>					
 				</div>
 			</div>
 
@@ -98,15 +97,15 @@
 					 	window.location.href = 'full-douong.php';
 					 </script>";			
 				}
-				else {
-					 echo "<script> 
-					 	window.location.href = 'login.php';
-					 								 </script>";
-				}
-				echo "<script> 							 	
-					 	location.reload();
-					 </script>";	
+			else {
+				 echo "<script> 
+				 	window.location.href = '../../../login/login.php';
+				 								 </script>";
 			}
+			echo "<script> 							 	
+				 	location.reload();
+				 </script>";	
+		}
 		
 		db_close($con);	
 	?>

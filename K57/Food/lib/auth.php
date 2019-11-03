@@ -19,10 +19,6 @@ function doLogin($conn,$username, $password){
 	 	setcookie("username", $username_cookie, time() + (86400 * 30), "/");
 		setcookie("password", $password_cookie, time() + (86400 * 30), "/");
 	 }
-		
-
-
-
 		return true;
 	}	
 	return false;

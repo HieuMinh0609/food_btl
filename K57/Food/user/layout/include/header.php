@@ -21,11 +21,11 @@
 			</div>	
 		</div>
 		<div class="header-right col-md-5 row">
-			<div class="col-md-4 dangky-dangnhap">
-				<a class="dangky" href="" name="signup">Signup |</a>
-				<a class="dangnhap" href="../login/login.php" name="login">Login</a>
+			<div class="col-md-2 dangky-dangnhap">
+				
+				<a class="dangnhap" href="../../../login/login.php" name="login">Login</a>
 			</div>
-			<div class="col-md-5 name-dangxuat">
+			<div class="col-md-6 name-dangxuat">
 				<span> 
 				<?php
 					require_once '../../lib/auth.php';
@@ -34,7 +34,7 @@
 					echo $username;
 				?>|</span>
 				
-				<a href="../login/login.php?logout=logout" class="dangxuat" name="logout">Logout</a>
+				<a href="?logout=logout" class="dangxuat" name="logout">Logout</a>
 			</div>
 			<?php 
 				if($username!=""){
@@ -57,21 +57,21 @@
 		<nav class="navbar navbar-expand-sm bg-primary  menu-navbar">
 		  <ul class="navbar-nav">
 		    <li class="nav-item active">
-		      <a class="nav-link " href="#">Trang chủ</a>
+		      <a class="nav-link " href="../layout/layout.php">Trang chủ</a>
 		    </li>
 		    <li class="nav-item dropdown">
 			   <a class="nav-link" href="#" id="navbarDropdown">Sản phẩm</a>
 			   <div class="dropdown-content">
-				   <a class="dropdown-item" href="full-douong.php">Đồ uống</a>
-				   <a class="dropdown-item" href="full-fastfood">Đồ ăn nhanh</a>
-				   <a class="dropdown-item" href="full-hotfood">Đồ ăn nóng</a>
+				   <a class="dropdown-item" href="../product/full-douong.php">Đồ uống</a>
+				   <a class="dropdown-item" href="../product/full-fastfood.php">Đồ ăn nhanh</a>
+				   <a class="dropdown-item" href="../product/full-hotfood.php">Đồ ăn nóng</a>
 			   </div>
 			</li>
 		    <li class="nav-item">
-		      <a class="nav-link" href="#">Giới thiệu</a>
+		      <a class="nav-link" href="../include/gioithieu.php">Giới thiệu</a>
 		    </li>
 		    <li class="nav-item">
-		      <a class="nav-link" href="#">Liên hệ</a>
+		      <a class="nav-link" href="../include/lienhe.php">Liên hệ</a>
 		    </li>
 		   
 		  </ul>
@@ -84,6 +84,9 @@
 	if(username ==''){
 		$('.name-dangxuat').hide();
 		$('.giohang').hide();
+	}
+	else{
+		$('.dangnhap').hide();
 	}
    		
    	

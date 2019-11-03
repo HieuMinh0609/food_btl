@@ -58,6 +58,10 @@
 								$id_user = getIdUser(getLoggedInUser());
 								
 								$result = getAllCart($con,$id_user);
+								$count  = mysqli_num_rows(getCount_IdUser($con, $id_user));
+								if($count==0){
+									redirect('../../layout/layout/layout.php');	
+								}
 
 							?>
 							<?php while ($dong = mysqli_fetch_array($result)) {
@@ -191,7 +195,7 @@
 			include "../../lib/bill-service.php";
 			if(isset($_POST['muatiep'])){
 				echo "<script>  	
-					 	window.location.href = 'layout.php';
+					 	window.location.href = '../layout/layout.php';
 					 </script>";
 			}
 			if(isset($_POST['xacnhanmuahang'])){

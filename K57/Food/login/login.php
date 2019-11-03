@@ -50,7 +50,7 @@ if(isset($_POST['register'])){
               if('2'==$result){
             redirect("../admin/viewhome/HomePage.php");
         }else if('1'==$result) {
-            redirect("../web/index.php");
+            redirect("../user/layout/layout/layout.php");
         }
          
         }
@@ -76,7 +76,7 @@ if(isset($_POST['register'])){
               if('2'==$result){
             redirect("../admin/viewhome/HomePage.php");
         }else if('1'==$result) {
-            redirect("../web/index.php");
+            redirect("../user/layout/layout/layout.php");
         }
          
         }

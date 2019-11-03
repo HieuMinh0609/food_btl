@@ -79,6 +79,9 @@
 		    <li class="nav-item">
 		      <a class="nav-link" href="#">Liên hệ</a>
 		    </li>
+		   	  <li class="nav-item">
+		      <a class="nav-link" href="../feedback/feedback.php">Phản Hồi</a>
+		    </li>
 		   
 		  </ul>
 		</nav>

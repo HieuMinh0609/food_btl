@@ -42,6 +42,18 @@ function CountTypeChartInYear($conn,$typeid,$year){
 	return mysqli_fetch_assoc($resultCountTypeChart)['count'];
 }
 
+function checkNull3($h1,$h2,$h3){
+	  if($h1==""){
+   		 $h1=0;
+	 	 }
+	  if($h2== ""){
+	    $h2=0;
+	  	}
+	  if($h3==""){
+	    $h3=0;
+	  }
+}
+
 
 function CountTypeMoneyOf3Year($conn,$month,$year){
 	$sql ="select sum(sell) as sell from  bill b

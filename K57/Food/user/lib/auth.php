@@ -16,6 +16,7 @@ function getIdUser($username){
 	while ($dong = mysqli_fetch_array($check)) { 
 		$result = $dong['idmember'];
 	}
+	 
 	return $result;
 }
 function checkLoggedIn() {

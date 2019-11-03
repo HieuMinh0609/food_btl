@@ -52,6 +52,9 @@
 	$fastfood =  CountTypeChart($conn,2,$month,$year);
 	$drink =  CountTypeChart($conn,3,$month,$year);
 
+  checkNull3($hotfood,$fastfood, $drink );
+ 
+
 	db_close($conn);
 
 
@@ -61,6 +64,7 @@
 	$sumMoney2 =  CountTypeMoneyOf3Year($conn,$month-1,$year);
 	$sumMoney3 =  CountTypeMoneyOf3Year($conn,$month-2,$year);
 
+  checkNull3($sumMoney1,$sumMoney2, $sumMoney3 );
 	db_close($conn);
 
 
@@ -71,6 +75,7 @@
 	$fastfood_in_year =  CountTypeChartInYear($conn,2,$year);
 	$drink_in_year =  CountTypeChartInYear($conn,3,$year);
 
+  checkNull3($hotfood_in_year,$fastfood_in_year, $drink_in_year );
 	db_close($conn);
 
 
@@ -96,7 +101,7 @@
                        2]);
 
       var options = {
-        title: "Statistics in <?= $month ?> month in  <?= $year ?> year",
+        title: "Statistics on <?= $month ?> month in  <?= $year ?> year",
         width: 600,
         height: 400,
         bar: {groupWidth: "95%"},

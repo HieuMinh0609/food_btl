@@ -16,7 +16,7 @@
 			<div class="row">
 				<div class="col-md-10 col-sm-10 col-xs-10">
 					<div class="input_search_area">
-						<input id="input_search_btn" class="input_search" type="text" name="nameCus" placeholder="Name Customer" >
+						<input id="input_search_btn" class="input_search" type="text" name="nameCus" placeholder="Login Name" >
 						<span class="focus-input100"></span>
 						<div class="symbol-input100">					 
 							<i class="glyphicon glyphicon-search"></i>
@@ -66,7 +66,7 @@ if (isset($_POST['btndanhdau']))   {
 		$nameCus=$_GET['nameCus'];
 
     	  if($_GET['nameCus']!==""){
-    	  	$arr = array("m.fullname"=>$_GET['nameCus']);
+    	  	$arr = array("m.namelogin"=>$_GET['nameCus']);
     	  }else{
     	  	 $arr = array();
     	  }

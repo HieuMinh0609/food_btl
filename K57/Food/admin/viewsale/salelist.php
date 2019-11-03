@@ -16,7 +16,7 @@
 			<div class="row">
 				<div class="col-md-10 col-sm-10 col-xs-10">
 					<div class="input_search_area">
-						<input id="input_search_btn" class="input_search" type="text" name="nameCus" placeholder="Name Customer" >
+						<input id="input_search_btn" class="input_search" type="text" name="nameCus" placeholder="Name Sale" >
 						<span class="focus-input100"></span>
 						<div class="symbol-input100">					 
 							<i class="glyphicon glyphicon-search"></i>

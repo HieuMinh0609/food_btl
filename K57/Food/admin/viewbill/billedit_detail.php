@@ -44,7 +44,7 @@ if(isset($_POST['updateDetail'])){
              $sales[]=$sale;
         }
         $sumMoney=0;
-    if(!is_null($details) && !empty($details)){
+    if(count($details)>0){
         foreach($details as $detail) { 
           foreach ($sales as $sale ) {
              if($detail["idproduct"] == $sale["idproduct"]){
@@ -57,7 +57,7 @@ if(isset($_POST['updateDetail'])){
 
         foreach($details as $detail) { 
             $kt=0;
-          if(!is_null($idSales) && !empty($idSales)){ 
+          if(count($idSales)>0){ 
           foreach ($idSales as $idSale ) {
               if($detail["idproduct"] == $idSale){
                      $kt=1;
@@ -88,18 +88,22 @@ if(isset($_POST['deleteDetail'])){
         //$totalWhenDelete = getTotalSellBill($conn,escapePostParam($conn, "id_bill"));
          $listIdProductSale = getAllSale($conn);
         $listDetailBill = getAllDeatailBill($conn,escapePostParam($conn, "id_bill"));
-
+        $details=[];
+        $sales=[];
         while($detail = mysqli_fetch_assoc($listDetailBill)){
             $details[]=$detail;
+
+
         }
 
         while($sale = mysqli_fetch_assoc($listIdProductSale)){
              $sales[]=$sale;
         }
-        $sumMoney=0;
-      if(!is_null($details) && !empty($details)){ 
-
+      $sumMoney=0;
+      if(count($details)>0){ 
+    
         foreach($details as $detail) { 
+          if(count($sales)>0  ){
           foreach ($sales as $sale ) {
              if($detail["idproduct"] == $sale["idproduct"]){
                     $sumMoney+= ((getSingleProduct($conn,$detail["idproduct"])["sell"]) - ((getSingleProduct($conn,$detail["idproduct"])["sell"]) * ($sale["percent"]/100)))* ($detail["SoLuong"]);
@@ -109,12 +113,13 @@ if(isset($_POST['deleteDetail'])){
 
                
           }
+          }
         }
         
 
         foreach($details as $detail) { 
             $kt=0;
-          if(!is_null($idSales) && !empty($idSales)){     
+          if(count($idSales[0])>0){     
           foreach ($idSales as $idSale ) {
               if($detail["idproduct"] == $idSale){
                      $kt=1;

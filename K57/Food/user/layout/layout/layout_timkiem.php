@@ -68,7 +68,7 @@
 				</span>
 				<span class="product-price"><?php echo number_format($dong['sell']) ; ?> đ</span>	<br> <br>
 				
-				<a href="layout_timkiem.php?action=add&id=<?php echo $id_product?>&promotion=<?php echo $promotion ?>" class="themgiohang">Thêm vào giỏ hàng</a>
+				<a href="layout_timkiem.php?action=add&id=<?php echo $id_product?>&promotion=<?php echo $promotion ?>&name=<?php echo $name_product ?>" class="themgiohang">Thêm vào giỏ hàng</a>
 			</form>
 					
 				</div>
@@ -93,13 +93,12 @@
 					echo "update";
 					$amount = $amount +1;
 					$sell =$promotion * $amount;
-					echo $amount;
-					echo $promotion;
-					echo $sell;
+					
 					updateCart($con, $id_user, $id_product, $amount,$sell);	
 				}
+				
 				echo "<script>  	
-					 	window.location.href = 'layout_timkiem.php?name=$input_timkiem';
+					 	window.location.href = 'layout_timkiem.php?name=$name_product';
 
 					 </script>";			
 				
@@ -109,7 +108,7 @@
 			}
 				else {
 					 echo "<script> 
-					 	window.location.href = 'login.php';
+					 	window.location.href = '../../../login/login.php';
 					 								 </script>";
 				}
 				echo "<script> 							 	
@@ -186,6 +185,38 @@
 				
 			}
 		 ?>
+		 <?php 
+		 	if(isset($_POST['submit_timkiem'])){
+				$input_timkiem = $_POST['input_timkiem'];
+				$result_tksp = Total_TimkiemSanPham($con, $input_timkiem);
+				$row_tksp = mysqli_fetch_assoc($result_tksp);
+				$total_records_tksp = $row_tksp['total'];
+				echo $total_records_tksp;
+				if($input_timkiem != ''){
+					
+					if($total_records_tksp != 0){
+						echo "<script>  	
+					 		window.location.href = 'layout_timkiem.php?name=$input_timkiem';
+					 	</script>";
+					 	
+					}
+					else{
+						echo "<script>  	
+					 	window.location.href = 'layout.php';
+					 </script>";
+					 
+					}
+
+					
+				}	
+				else{
+					echo "<script>  	
+					 	window.location.href = 'layout.php';
+					 </script>";
+					 
+				}
+			}
+		  ?>
 	<?php include_once('../include/footer.php') ?>
 	
 </body>

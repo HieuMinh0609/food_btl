@@ -21,9 +21,9 @@ function getIdUser($username){
 }
 function checkLoggedIn() {
 	startSession();
-	if(!isset($_SESSION["username"])) {
-		redirect("../../../login/login.php");
-	}
+	// if(!isset($_SESSION["username"])) {
+	// 	redirect("../../../login/login.php");
+	// }
 }
 
 function isValid($username, $password) {

@@ -7,18 +7,18 @@ function doLogin($conn,$username, $password){
 		$password_cookie =$password;
 
 
-	startSession();
+		startSession();
 
 		$isMember = isMember($conn,$username, $password);
 		$_SESSION["username"] = $username;
 
-	startSession();
+		startSession();
 		$_SESSION["idrole"] =$isMember['idrole'] ;
 
-	 if(!isset($_COOKIE['username']) && !isset($_COOKIE['password'])){
-	 	setcookie("username", $username_cookie, time() + (86400 * 30), "/");
-		setcookie("password", $password_cookie, time() + (86400 * 30), "/");
-	 }
+		 if(!isset($_COOKIE['username']) && !isset($_COOKIE['password'])){
+		 	setcookie("username", $username_cookie, time() + (86400 * 30), "/");
+			setcookie("password", $password_cookie, time() + (86400 * 30), "/");
+		 }
 		return true;
 	}	
 	return false;
@@ -26,17 +26,17 @@ function doLogin($conn,$username, $password){
 
 function checkLoggedInWeb() {
 	startSession();
-	if(!isset($_SESSION["username"])) {
-		redirect("../../login/login.php");
-	}
+	// if(!isset($_SESSION["username"])) {
+	// 	redirect("../../login/login.php");
+	// }
 }
 
 
 function checkLoggedInAdmin() {
 	startSession();
-	if(!isset($_SESSION["username"]) && ($_SESSION["idrole"])!='2') {
-		redirect("../../login/login.php");
-	}
+	// if(!isset($_SESSION["username"]) && ($_SESSION["idrole"])!='2') {
+	// 	redirect("../../login/login.php");
+	// }
 }
 
 

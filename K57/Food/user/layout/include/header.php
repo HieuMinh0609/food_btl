@@ -1,6 +1,4 @@
 
- 
-
 <?php 
 	include '../../lib/auth.php';
 	include '../../lib/cart_service.php';
@@ -27,13 +25,11 @@
 			</div>	
 		</div>
 		<div class="header-right col-md-5 row">
-<<<<<<< HEAD
-			<div class="col-md-4 dangky-dangnhap">
-				<a class="dangky" href="../../../login/login.php" name="signup">Signup |</a>
-=======
+
+			<!-- <div class="col-md-4 dangky-dangnhap">
+				<a class="dangky" href="../../../login/login.php" name="signup">Signup</a> -->
+			
 			<div class="col-md-2 dangky-dangnhap">
-				
->>>>>>> cdd762dc5ac38afac29636599b1b339de8324220
 				<a class="dangnhap" href="../../../login/login.php" name="login">Login</a>
 			</div>
 			<div class="col-md-6 name-dangxuat">
@@ -58,7 +54,10 @@
 				}
 				
 			 ?>
-			<div class="col-md-3 giohang"><a href="../cart/cart.php">Giỏ hàng(<?php echo $count ?>)</a></div>
+			 
+			<div class="col-md-3 giohang">
+				<a href="../cart/cart.php">Giỏ hàng(<?php echo $count ?>)</a>
+			</div>
 		</div>
 	</div>
 	</form>
@@ -98,6 +97,7 @@
 	if(username ==''){
 		$('.name-dangxuat').hide();
 		$('.giohang').hide();
+		$('.feedback').hide();
 	}
 	else{
 		$('.dangnhap').hide();

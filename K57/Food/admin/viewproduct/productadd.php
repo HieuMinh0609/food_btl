@@ -24,12 +24,22 @@
     require("../../lib/ProductService.php");
 
 
+error_reporting(0);
+ini_set('display_errors', 0);
 
 if(isset($_POST["saveProduct"])){
 $target_dir = "../images/";
 $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
 
 uploadFileimage($target_file,"fileToUpload");
+
+$target_dir2 =  "../../user/image/";
+$target_file2 =  $target_dir2 .basename($_FILES["fileToUpload"]["name"]);
+
+uploadFileimage($target_file,$target_file2,"fileToUpload");
+
+ 
+ 
 
  $conn = db_connect();
         createProduct($conn, 
@@ -42,7 +52,6 @@ uploadFileimage($target_file,"fileToUpload");
             );    
 
 db_close($conn);
-
 
 }
 

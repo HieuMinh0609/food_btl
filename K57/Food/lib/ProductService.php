@@ -85,7 +85,7 @@ LIMIT 0,1");
 	return mysqli_num_rows($result);
 }
 
-function uploadFileimage($target_file,$fileToUpload=""){
+function uploadFileimage($target_file,$target_file2,$fileToUpload=""){
 	
 
 $uploadOk = 1;
@@ -103,9 +103,10 @@ if(isset($_POST["submit"])) {
 }
 // Check if file already exists
 if (file_exists($target_file)) {
-   
+      
     $uploadOk = 0;
 }
+ 
 // Check file size
 if ($_FILES["$fileToUpload"]["size"] > 500000) {
     
@@ -119,15 +120,21 @@ if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg
 }
 // Check if $uploadOk is set to 0 by an error
 if ($uploadOk == 0) {
-    
+     
 // if everything is ok, try to upload file
 } else {
-    if (move_uploaded_file($_FILES["$fileToUpload"]["tmp_name"], $target_file)) {
-       
+    if( move_uploaded_file($_FILES["$fileToUpload"]["tmp_name"], $target_file)){
+        copy($target_file  , $target_file2);  
+    }
+
     
-}
+ 
 
 }
 }
+
+
+ 
+
 
  ?>

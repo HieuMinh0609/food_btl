@@ -44,7 +44,7 @@ if(isset($_POST['updateDetail'])){
              $sales[]=$sale;
         }
         $sumMoney=0;
-
+    if(!is_null($details) && !empty($details)){
         foreach($details as $detail) { 
           foreach ($sales as $sale ) {
              if($detail["idproduct"] == $sale["idproduct"]){
@@ -57,15 +57,18 @@ if(isset($_POST['updateDetail'])){
 
         foreach($details as $detail) { 
             $kt=0;
+          if(!is_null($idSales) && !empty($idSales)){ 
           foreach ($idSales as $idSale ) {
               if($detail["idproduct"] == $idSale){
                      $kt=1;
             }               
           }
+        }
           if($kt==0){
             $sumMoney+=  getSingleProduct($conn,$detail["idproduct"])["sell"]* ($detail["SoLuong"]); 
           }
         }
+      }
        // echo "Sum:".$sumMoney;
         updateSellBill($conn,escapePostParam($conn, "id_bill"),$sumMoney);
 
@@ -94,6 +97,7 @@ if(isset($_POST['deleteDetail'])){
              $sales[]=$sale;
         }
         $sumMoney=0;
+      if(!is_null($details) && !empty($details)){ 
 
         foreach($details as $detail) { 
           foreach ($sales as $sale ) {
@@ -106,23 +110,26 @@ if(isset($_POST['deleteDetail'])){
                
           }
         }
+        
 
         foreach($details as $detail) { 
             $kt=0;
+          if(!is_null($idSales) && !empty($idSales)){     
           foreach ($idSales as $idSale ) {
               if($detail["idproduct"] == $idSale){
                      $kt=1;
             } 
 
-               
+             }  
           }
+        }
 
           if($kt==0){
             $sumMoney+=  getSingleProduct($conn,$detail["idproduct"])["sell"]* ($detail["SoLuong"]); 
           }
 
         }
-
+        
 
         updateSellBill($conn,escapePostParam($conn, "id_bill"),$sumMoney);
         db_close($conn);

@@ -108,7 +108,7 @@
 					 </script>";	
 			}
 		
-		db_close($con);	
+			
 	?>
 
 
@@ -140,6 +140,9 @@
     <br>
 	<hr>
 	</div>
-	<?php include_once('../include/footer.php') ?>
+	<?php 
+		db_close($con);
+		include_once('../include/footer.php') 
+	?>
 </body>
 </html>

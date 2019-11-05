@@ -9,7 +9,7 @@
 	if (isset($_GET['logout']))   {
         doLogout();
 	}
-	
+	$con = db_connect();
  ?>
 <div class="header container-fluid">
 	<form action="" method="POST">
@@ -46,7 +46,7 @@
 			<?php 
 				if($username!=""){
 
-					$con = db_connect();
+					
 					
 					$id_user = getIdUser($username);
 
@@ -58,6 +58,7 @@
 			<div class="col-md-3 giohang">
 				<a href="../cart/cart.php">Giỏ hàng(<?php echo $count ?>)</a>
 			</div>
+			<?php db_close($con); ?>
 		</div>
 	</div>
 	</form>

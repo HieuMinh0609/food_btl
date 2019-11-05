@@ -30,6 +30,7 @@
 <body>
 	<?php 
 		include_once('../include/header.php') ;
+		$con =db_connect();
 	?>
 <form  method="POST">
 	<div class="row">
@@ -54,7 +55,7 @@
 								include_once ('../../lib/cart_service.php');
 								include_once ('../../lib/auth.php');
 								$tongtien1=0;
-								$con =db_connect();
+								
 								$id_user = getIdUser(getLoggedInUser());
 								
 								$result = getAllCart($con,$id_user);

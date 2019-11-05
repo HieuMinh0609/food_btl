@@ -219,7 +219,7 @@
 				 	window.location.href = '../layout/layout.php';
 				 								 </script>";
 		}
-		
+		db_close($con);
 	 ?>
 	 
 	 

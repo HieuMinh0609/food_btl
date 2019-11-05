@@ -26,14 +26,14 @@
 		return db_query($conn, "SELECT count(idproduct) as total FROM product where typeid='3' and status ='0'");
 	}
 	function Product_Doan_Hot_Full($conn,$start,$limit) {
-		return db_query($conn, "SELECT product.idproduct as 'idproduct', product.name, product.information, product.sell, product.typeid, product.image, product.status, sale.percent as 'promotion' FROM product LEFT JOIN sale ON product.idproduct = sale.idproduct WHERE typeid='3' and status ='0' LIMIT $start,$limit");
+		return db_query($conn, "SELECT product.idproduct as 'idproduct', product.name, product.information, product.sell, product.typeid, product.image, product.status, sale.percent as 'promotion' FROM product LEFT JOIN sale ON product.idproduct = sale.idproduct WHERE typeid='1' and status ='0' LIMIT $start,$limit");
 	}
 	function Product_Doan_Fast_Full($conn,$start,$limit) {
 		return db_query($conn, "SELECT product.idproduct as 'idproduct', product.name, product.information, product.sell, product.typeid, product.image, product.status, sale.percent as 'promotion' FROM product LEFT JOIN sale ON product.idproduct = sale.idproduct WHERE typeid='2' and status ='0' LIMIT $start,$limit");
 	}
 	
 	function Product_Douong_Full($conn,$start,$limit) {
-		return db_query($conn, "SELECT product.idproduct as 'idproduct', product.name, product.information, product.sell, product.typeid, product.image, product.status, sale.percent as 'promotion' FROM product LEFT JOIN sale ON product.idproduct = sale.idproduct WHERE typeid='1' and status ='0' LIMIT $start,$limit");
+		return db_query($conn, "SELECT product.idproduct as 'idproduct', product.name, product.information, product.sell, product.typeid, product.image, product.status, sale.percent as 'promotion' FROM product LEFT JOIN sale ON product.idproduct = sale.idproduct WHERE typeid='3' and status ='0' LIMIT $start,$limit");
 	}
 	function Add_Cart($conn,$start,$limit) {
 		return db_query($conn, "SELECT  * FROM product where typeid='3' and status ='1' LIMIT $start,$limit");

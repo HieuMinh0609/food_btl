@@ -25,7 +25,7 @@
 		$total_records = $row['total'];
 
 		$current_page = isset($_GET['page']) ? $_GET['page'] : 1;
-		$limit = 16;
+		$limit = 4;
 
 		$total_page = ceil($total_records / $limit);
 
@@ -39,7 +39,7 @@
 
 		$start = ($current_page - 1) * $limit;
 
-		$result = Product_Doan_Hot($con,$start,$limit);
+		$result = Product_Doan_Hot_Full($con,$start,$limit);
 
 	?>
 	
@@ -49,8 +49,8 @@
 		
 		<div class="danhsach row">
 	
-			<?php while ($dong = mysqli_fetch_array($result)) {
-			?>	
+			<?php while ($dong = mysqli_fetch_array($result)) {?>
+				
 			<div class="col-md-3">
 				<div class="product">
 					<form action="" method="POST">						
@@ -70,7 +70,7 @@
 				</div>
 			</div>
 
-			<?php } 		
+			<?php }	
 		if(isset($_GET['action']) && $_GET['action']=="add"){
 			if(getLoggedInUser() !=''){
 				$id_product=intval($_GET['id']);

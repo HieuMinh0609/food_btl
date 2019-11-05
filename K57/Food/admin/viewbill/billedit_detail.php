@@ -35,7 +35,9 @@ if(isset($_POST['updateDetail'])){
          
         $listIdProductSale = getAllSale($conn);
         $listDetailBill = getAllDeatailBill($conn,escapePostParam($conn, "id_bill"));
-
+        $details=[];
+        $sales=[];
+         $idSales=[];
         while($detail = mysqli_fetch_assoc($listDetailBill)){
             $details[]=$detail;
         }
@@ -90,6 +92,7 @@ if(isset($_POST['deleteDetail'])){
         $listDetailBill = getAllDeatailBill($conn,escapePostParam($conn, "id_bill"));
         $details=[];
         $sales=[];
+         $idSales=[];
         while($detail = mysqli_fetch_assoc($listDetailBill)){
             $details[]=$detail;
 
@@ -119,7 +122,7 @@ if(isset($_POST['deleteDetail'])){
 
         foreach($details as $detail) { 
             $kt=0;
-          if(count($idSales[0])>0){     
+          if(count($idSales)>0){     
           foreach ($idSales as $idSale ) {
               if($detail["idproduct"] == $idSale){
                      $kt=1;
@@ -195,9 +198,9 @@ db_close($conn);
                 <input required readonly  style="padding-left: 158px;" class="input_name "  id="id_detailbill" type="text"  name="id_detailbill"  placeholder="ID Detail" value= ""   >
                 <span class="focus-input100"></span>
                 <span class="symbol-input100">
-						<i class="glyphicon glyphicon-tag"></i>
+            <i class="glyphicon glyphicon-tag"></i>
                          <span style="  margin-left: 5px;">ID Detail</span>
-						</span>
+            </span>
 
             </div>
             <div class="loginname">
@@ -213,9 +216,9 @@ db_close($conn);
                 <input required style="padding-left: 158px;"  class="input_name" id="mountProduct" type="text" name="mountProduct"  placeholder="Count" >
                 <span class="focus-input100"></span>
                 <span class="symbol-input100">
-						<i class="glyphicon glyphicon-tag"></i>
+            <i class="glyphicon glyphicon-tag"></i>
                         <span style="  margin-left: 5px;">Count</span>
-						</span>
+            </span>
 
 
             </div>
@@ -224,9 +227,9 @@ db_close($conn);
                 <input required readonly style="padding-left: 158px;" id="nameProduct" class="input_name" type="text" name="nameProduct" placeholder="Name Product" >
                 <span class="focus-input100"></span>
                 <span class="symbol-input100">
-						<i class="glyphicon glyphicon-shopping-cart"></i>
+            <i class="glyphicon glyphicon-shopping-cart"></i>
                         <span style="  margin-left: 5px;">Name</span>
-						</span>
+            </span>
             </div>
 
 <div class="row">

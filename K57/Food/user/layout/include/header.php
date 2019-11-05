@@ -62,7 +62,7 @@
 	</div>
 	</form>
 	
-	<div class="menu row">
+	<div class="menu row container-fluid">
 		
 		<nav class="navbar navbar-expand-sm bg-primary  menu-navbar">
 		  <ul class="navbar-nav">
@@ -84,7 +84,7 @@
 		      <a class="nav-link" href="../include/lienhe.php">Liên hệ</a>
 		    </li>
 		   	  <li class="nav-item">
-		      <a class="nav-link" href="../feedback/feedback.php">Phản Hồi</a>
+		      <a class="nav-link" href="../feedback/feedback.php">Phản hồi</a>
 		    </li>
 		   
 		  </ul>

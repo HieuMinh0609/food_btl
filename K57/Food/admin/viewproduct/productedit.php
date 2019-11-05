@@ -31,10 +31,14 @@ $row=getSingleProduct($conn,$id);
 db_close($conn);
 
 if(isset($_POST["saveProduct"])){
-$target_dir = "images/";
+$target_dir = "../images/";
 $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
+
+$target_dir2 =  "../../user/image/";
+$target_file2 =  $target_dir2 .basename($_FILES["fileToUpload"]["name"]);
+
 if(basename($_FILES["fileToUpload"]["name"])!=""){
-   uploadFileimage($target_file,"fileToUpload");
+uploadFileimage($target_file,$target_file2,"fileToUpload");
 
  $conn = db_connect();
         updateProduct($conn,$row["idproduct"],

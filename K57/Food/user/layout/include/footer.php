@@ -1,3 +1,3 @@
 <div class="footer">
-		<span>footer</span>
+		<span>Flowers</span>
 </div>

@@ -25,7 +25,7 @@
 		$total_records = $row['total'];
 
 		$current_page = isset($_GET['page']) ? $_GET['page'] : 1;
-		$limit = 16;
+		$limit =4;
 
 		$total_page = ceil($total_records / $limit);
 
@@ -39,7 +39,7 @@
 
 		$start = ($current_page - 1) * $limit;
 
-		$result = Product_Doan_Fast($con,$start,$limit);
+		$result = Product_Doan_Fast_Full($con,$start,$limit);
 
 	?>
 	

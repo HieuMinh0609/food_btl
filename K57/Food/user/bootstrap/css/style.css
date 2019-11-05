@@ -69,7 +69,9 @@ body{
 .menu{
 	background-color: #007bff;
 	margin-left: 400px;
-	width: 1310px;
+	width: %;
+	margin:0px;
+
 }
 .menu ul{
 	height: 40px;
@@ -427,5 +429,6 @@ body{
 /* end product-detail*/
 
 .footer{
-	background-color: #1313DF;
+	background-color: #8ece8e;
+	text-align: center;
 }

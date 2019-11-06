@@ -24,7 +24,7 @@
 					<img src="../../image/<?php echo $dong['image']; ?>" alt=""></a><br>
 				<?php $id_product= $dong['idproduct'];?>
 				<a href="../product/product-detail.php?action=detail&id=<?php echo $id_product?>">
-					<span class="product-name"><?php echo substr($dong['name'],0,20) ; ?></span></a>
+					<span class="product-name"><?php echo substr($dong['name'],0,30) ; ?></span></a>
 					<br>
 				<span class="product-price-khuyenmai">
 					<?php $promotion=$dong['sell']*(100-$dong['promotion'])/100;

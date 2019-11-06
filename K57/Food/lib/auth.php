@@ -34,9 +34,9 @@ function checkLoggedInWeb() {
 
 function checkLoggedInAdmin() {
 	startSession();
-	// if(!isset($_SESSION["username"]) && ($_SESSION["idrole"])!='2') {
-	// 	redirect("../../login/login.php");
-	// }
+	 if(!isset($_SESSION["username"]) && ($_SESSION["idrole"])!='2') {
+	 	redirect("../../login/login.php");
+	 }
 }
 
 

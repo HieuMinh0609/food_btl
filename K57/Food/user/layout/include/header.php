@@ -62,7 +62,7 @@
 	</div>
 	</form>
 	
-	<div class="menu row container-fluid">
+	<div class="menu row " style="width: 1349px;">
 		
 		<nav class="navbar navbar-expand-sm bg-primary  menu-navbar">
 		  <ul class="navbar-nav">

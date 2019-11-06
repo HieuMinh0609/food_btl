@@ -69,13 +69,13 @@ body{
 .menu{
 	background-color: #007bff;
 	margin-left: 400px;
-	width: %;
-	margin:0px;
+	width: 1349px;
+
 
 }
 .menu ul{
 	height: 40px;
-	margin-left: 400px;
+	margin-left: 300px;
 }
 .menu-navbar ul li{
 	margin-left: 30px;

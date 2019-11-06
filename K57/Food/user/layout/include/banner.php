@@ -1,5 +1,5 @@
-<div class="center-top row">
-			<div class="banner col-md-12 row">
+<div class="center-top row" >
+			<div class="banner col-md-12 row" style="margin-left: 0px;">
 				<div class="col-md-8 slide">
 					<div id="demo" class="carousel slide" data-ride="carousel">
 

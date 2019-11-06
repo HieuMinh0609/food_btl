@@ -111,13 +111,36 @@
 					$result1 = getComment_IdProduct($con,$id_product,$start,$limit);
 					
 	 				while ($dong1 = mysqli_fetch_array($result1)) {
+	 					 
 						?>
 						
-			 			<span><?php echo $dong1['namelogin'] ?></span><br>
+			 			<span><?php echo $dong1['namelogin'] ?></span>
+			 			<?php 
+
+			 			if(isset($_SESSION["username"])){
+			 				
+			 				$id=getIdUser($_SESSION["username"]);
+			 				
+			 				if(isRoleUserAdmin($con,$id)){
+			 					
+			 					echo '<button onclick="deletecomment(this)" class="btn btn-danger" title="delete" style="
+    							padding: 0px 2px 0px 2px;" idcomment="'.$dong1['idcomment'].'">delete</button>';
+
+    							 
+    							
+			 				}
+			 			}
+			 			 ?>
+			 			<br>
 					 	<p><?php echo $dong1['content']; ?></p>
+					 		 	
+					 		 	
+
 				 		<hr>
 				 		
-					   <?php }
+					   <?php 
+					  
+							}
 					   ?>
 			    	<div class="pagination-detail">
 			    	<?php  
@@ -219,10 +242,41 @@
 				 	window.location.href = '../layout/layout.php';
 				 								 </script>";
 		}
-		db_close($con);
+		
 	 ?>
 	 
-	 
+<script type="text/javascript">
+	
+	function deletecomment(argument) {
+
+		var confirmText = "Are you sure you want to delete this comment?";
+		if(confirm(confirmText)) {
+		$idComment=$(argument).attr('idcomment');
+		 
+
+         $.ajax({
+        url : '../../../admin/ajax/DeleteComment.php',
+        type : 'post',
+        dataType : 'json',
+        data : {
+            id :  $idComment
+             
+        },
+        success : function (data)
+        {
+              alert("Delete success!");            
+		},
+		error :function(data)
+		{
+			alert("Delete Fail!"); 
+		}
+           
+        
+       
+	});
+}
+}
+</script>
 	 
 </body>
 </html>

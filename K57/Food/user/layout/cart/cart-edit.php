@@ -92,7 +92,7 @@
 			 </script>";
 		}
 		// updateCart($con, $id_user, $id_product, $amount, $sell);
-		db_close($con);
+		
 	 ?>
 </body>
 </html>

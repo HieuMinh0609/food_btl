@@ -58,8 +58,7 @@
 					 	window.location.href = 'layout.php';
 					 </script>";
 					 
-				}
-				db_close($con);		
+				}		
 				
 			}
 		 ?>

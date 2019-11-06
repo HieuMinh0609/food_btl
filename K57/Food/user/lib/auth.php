@@ -19,6 +19,20 @@ function getIdUser($username){
 	 
 	return $result;
 }
+
+function isRoleUserAdmin($conn,$id){
+	//$check = db_query($conn,"SELECT * FROM member where idmember='$id'");
+	//
+	$result=db_single($conn,"SELECT * FROM member where idmember='$id'");	 
+		$isRole = $result['idrole'];
+
+	if($isRole==2){ 
+	return true;
+	}else{
+		return false;
+	}
+}
+
 function checkLoggedIn() {
 	startSession();
 	// if(!isset($_SESSION["username"])) {

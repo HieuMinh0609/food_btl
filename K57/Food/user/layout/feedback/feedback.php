@@ -59,7 +59,7 @@ if( isset($_POST['feedback'])){
 
 	<div style="margin: 10px; text-align: center;">
 		<form   method="post">
-		<textarea name="content" placeholder="Viết phản hồi tại đây..." cols="50" rows="4"></textarea>
+		<textarea name="content" required placeholder="Viết phản hồi tại đây..." cols="50" rows="4"></textarea>
 		<br>
 		<button type="submit" name="feedback" class="btn btn-warning">Send</button>
 		</form>

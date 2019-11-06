@@ -57,7 +57,7 @@
 				<a href="product-detail.php?action=detail&id=<?php echo $id_product?>">
 					<img src="../../image/<?php echo $dong['image']; ?>" alt=""></a><br>
 				<?php $id_product= $dong['idproduct'];?>
-				<a href="product-detail.php?action=detail&id=<?php echo $id_product?>"><span class="product-name"><?php echo substr($dong['name'],0,30) ; ?></span></a><br>
+				<a href="product-detail.php?action=detail&id=<?php echo $id_product?>"><span class="product-name"><?php echo substr($dong['name'],0,20) ; ?></span></a><br>
 				<span class="product-price-khuyenmai">
 					<?php $promotion=$dong['sell']*(100-$dong['promotion'])/100;
 					echo number_format($promotion) ; ?> đ
@@ -108,7 +108,7 @@
 					 </script>";	
 			}
 		
-			
+		db_close($con);	
 	?>
 
 
@@ -140,9 +140,6 @@
     <br>
 	<hr>
 	</div>
-	<?php \
-		db_close($con);
-		include_once('../include/footer.php') ;
-	?>
+	<?php include_once('../include/footer.php') ?>
 </body>
 </html>

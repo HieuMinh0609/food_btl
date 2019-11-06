@@ -116,7 +116,7 @@
 					 </script>";	
 			}
 		
-		
+		db_close($con);	
 	?>
 
 
@@ -152,7 +152,7 @@
 			include_once ('../../lib/db.php');
 			include_once ('../../lib/controls.php');
 			include_once ('../../lib/cart_service.php');
-			
+			$con =db_connect();
 			if(isset($_POST['submit_timkiem'])){
 				$input_timkiem = $_POST['input_timkiem'];
 				$result_tksp = Total_TimkiemSanPham($con, $input_timkiem);
@@ -216,7 +216,6 @@
 					 
 				}
 			}
-			db_close($con);	
 		  ?>
 	<?php include_once('../include/footer.php') ?>
 	

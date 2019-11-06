@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>Feecdback</title>
+	<title>Flowers.com</title>
 	<link rel="stylesheet" href="../../bootstrap/css/style.css">
 	<link rel="stylesheet" href="../../bootstrap/css/bootstrap.min.css">
 	<link rel="stylesheet" href="../../bootstrap/js/bootstrap.min.js">

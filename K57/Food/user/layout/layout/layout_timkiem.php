@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>User</title>
+	<title>Flowers.com</title>
 	<link rel="stylesheet" href="../../bootstrap/css/style.css">
 	<link rel="stylesheet" href="../../bootstrap/css/bootstrap.min.css">
 	<link rel="stylesheet" href="../../bootstrap/js/bootstrap.min.js">
@@ -128,20 +128,26 @@
    <?php 
     
 	    if ($current_page > 1 && $total_page > 1){
-	        echo '<a href="full-fastfood.php?page='.($current_page-1).'">Prev</a> ';
+	    	$input_timkiem =$_GET['name'];
+	    	
+	       echo '<a href="layout_timkiem.php?name='.$input_timkiem.'&page='.($current_page-1).'">Prev</a> ';
 	    }
 
 	    
 	    for ($i = 1; $i <= $total_page; $i++){
 	        
-	       
-	            echo '<a class="trang" href="full-fastfood.php?page='.$i.'">'.$i.'</a> ';
+	       		$input_timkiem =$_GET['name'];
+	            
+	            echo '<a href="layout_timkiem.php?name='.$input_timkiem.'&page='.($i).'">'.$i.'</a> ';
 	        
 	    }
 
 	    
 	    if ($current_page < $total_page && $total_page > 1){
-	        echo '<a href="full-fastfood.php?page='.($current_page+1).'">Next</a> ';
+
+	    	$input_timkiem =$_GET['name'];
+	    	
+	       echo '<a href="layout_timkiem.php?name='.$input_timkiem.'&page='.($current_page+1).'">Next</a> ';
 	    }
 	   ?>
 	</div>

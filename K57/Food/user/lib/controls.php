@@ -39,7 +39,7 @@
 		return db_query($conn, "SELECT  * FROM product where typeid='3' and status ='1' LIMIT $start,$limit");
 	}
 	function GetProduct_Id($conn, $id_product){
-		return db_query($conn,"SELECT product.idproduct , name, information, sell, sale.percent as 'promotion', image, AVG(rate) as 'avg_rate' from product LEFT join sale on product.idproduct = sale.idproduct,comment where product.idproduct = $id_product and product.idproduct = comment.idproduct");
+		return db_query($conn,"SELECT product.idproduct , name, information, sell, sale.percent as 'promotion', image, AVG(rate) as 'avg_rate' from product LEFT join sale on product.idproduct = sale.idproduct LEFT join comment on product.idproduct = comment.idproduct where product.idproduct = $id_product");
 	}
 	function Filter_ProductPrice($conn, $min, $max){
 		return db_query($conn, "SELECT * FROM  product where sell>= $min and sell <=$max");

@@ -52,7 +52,7 @@
  	}
    
     $conn = db_connect();
-     	updatePassword($conn,sha1($pass),$phone);
+     	updatePassword($conn,md5($pass),$phone);
  	db_close($conn);
    } 
 

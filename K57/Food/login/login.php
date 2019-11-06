@@ -24,7 +24,7 @@ if(isset($_POST['register'])){
         createMember($conn, 
             escapePostParam($conn, "namelogin"), 
             escapePostParam($conn,"namefull"), 
-            sha1(escapePostParam($conn,"password")),
+            md5(escapePostParam($conn,"password")),
              $timenow, 
             '1', 
             escapePostParam($conn,"sex"), 
@@ -64,12 +64,12 @@ if(isset($_POST['register'])){
         $username =  escapePostParam($conn, "namelogin");
         $password =  escapePostParam($conn, "password");
       
-        
-         
-        if(!doLogin($conn,$username, sha1($password))) {
+        $user = md5($password);
+         echo $user;
+        if(!doLogin($conn,$username, md5($password))) {
             $resultMess ="Invalid username or password!";
         }else{
-            $isMember = isMember($conn,$username, sha1($password));
+            $isMember = isMember($conn,$username, md5($password));
             $result=  $isMember['idrole'];
         }
         if($resultMess==""){

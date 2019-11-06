@@ -31,7 +31,7 @@ if(isset($_POST['saveMember'])){
         createMember($conn, 
             escapePostParam($conn, "nameLogin"), 
             escapePostParam($conn,"nameFull"), 
-            sha1(escapePostParam($conn,"passWord")),
+            md5(escapePostParam($conn,"passWord")),
              $timenow, 
             escapePostParam($conn,"role"), 
             escapePostParam($conn,"sex"), 
